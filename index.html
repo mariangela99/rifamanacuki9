@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>🎟️ Rifa – 500 números (varios premios)</title>
+<style>
+  :root{
+    /* Paleta verde pastel + verde oscuro */
+    --bg1:#ecfdf5; --bg2:#d1fae5; --card:#f0fdf4; --border:#bbf7d0;
+    --text:#083c2b; --muted:#0f5132; --accent:#10b981; --accent2:#34d399;
+    --chip:#dcfce7; --sold:#e8f5ef; --dark:#065f46;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+       background:linear-gradient(120deg,var(--bg1),var(--bg2));color:var(--text)}
+  .wrap{max-width:1100px;margin:28px auto;padding:16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+        padding:18px;box-shadow:0 10px 30px rgba(6,95,70,.08)}
+  .hero{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  h1{margin:0 0 6px;font-size:clamp(1.6rem,3.2vw,2.2rem)}
+  .sub{color:var(--muted);font-weight:600}
+  .pills span{display:inline-block;border:1px solid var(--border);color:#065f46;
+              background:var(--chip);border-radius:999px;padding:6px 12px;margin-right:8px;font-weight:800}
+  .status{font-size:.9rem;color:var(--muted)}
+
+  .label{display:inline-block;padding:8px 12px;border-radius:10px;font-weight:800}
+  .label.dark{background:var(--dark);color:#fff}
+
+  /* Grilla 500 números */
+  .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:10px;margin-top:10px}
+  .num{background:#fff;border:1px solid var(--border);border-radius:12px;
+       padding:10px 6px;text-align:center;font-weight:800;cursor:pointer;user-select:none;
+       box-shadow:0 1px 0 rgba(0,0,0,.05);transition:.1s ease;
+       font-size:clamp(13px,3.4vw,17px);line-height:1;letter-spacing:.4px}
+  .num:hover{transform:translateY(-1px);border-color:var(--accent2)}
+  .num.sel{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 0 0 2px rgba(6,95,70,.18) inset}
+  .num:active{transform:scale(.98)}
+  .num:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .num.sold{background:var(--sold);color:#7a8b85;text-decoration:line-through;cursor:not-allowed}
+
+  .legend{display:flex;gap:12px;align-items:center;color:var(--muted);flex-wrap:wrap;margin-top:8px}
+  .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
+  .chip.sel{background:#e6f7ef;border-color:var(--accent)}
+  .chip.sold{background:var(--sold)}
+
+  .sum{margin-top:8px;font-weight:800;color:#0b4a37}
+
+  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .btn{all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
+       border:1px solid var(--border);background:linear-gradient(180deg,#ecfdf5,#dcfce7);
+       color:var(--dark);box-shadow:0 1px 0 rgba(0,0,0,.04);text-align:center}
+  .btn.primary{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .btn.primary:hover:not(:disabled){filter:brightness(.96);transform:translateY(-1px)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.secondary{background:#fff}
+
+  /* Premios & Pago */
+  .prizes li{margin:6px 0}
+  .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
+  .paygrid b{display:block;color:var(--dark)}
+  .qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .qr img{width:160px;height:160px;border-radius:12px;border:1px solid var(--border);background:#fff}
+
+  /* responsive */
+  @media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
+  @media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} .num{padding:10px 4px} }
+  @media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} .num{padding:10px 2px;font-size:clamp(12px,4vw,16px)} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Encabezado -->
+  <div class="card hero">
+    <div>
+      <h1>🎟️ Súper Rifa – (Varios Premios)</h1>
+      <div class="sub">Elegí hasta 4 números y escribime por WhatsApp 💬</div>
+      <div class="pills" style="margin-top:6px">
+        <span>$10.000 c/u</span><span>2 × $18.000</span><span>3 × $26.000</span>
+      </div>
+      <div id="st" class="status">Estado: conectando…</div>
+    </div>
+  </div>
+
+  <!-- Premios -->
+  <div class="card" style="margin-top:12px;">
+    <h3>🏆Beneficios: Premios</h3>
+    <ul class="prizes">
+      <li><b>1.º Premio:</b>  2 entradas María Becerra (campo centenario) Beneficios:
+Early entrance
+Kit de merch exclusivo
+Credencial conmemorativa.</li>
+      <li><b>2.º Premio:</b>Perfumes (combo)
+  Latafa Yara Candy· Latafa Asad·Calvin Klein Be.</li>
+      <li><b>3.º Premio:</b> Make up / Skin care (Kit A)</b><br>
+  Nivea toallita desmaquillante, Meraki hisopos, Conni pad limpieza, 
+  ACF Protector camuflaje, Serum humectante Vol 1° ACF $15.900 , Máscara Maybelline Falsies Lash,
+  Corrector Maybelline Eraser, Dúo sombras Extrime, Carmex, Gel de cejas Extrime, 
+  Delineador de labios, Labial MAC, Paleta rostro Avon, Esponja Get the look.</li>
+      <li><b>4.º Premio:</b> Make up / Skin care (Kit B)</b><br>
+  Bálsamo desmaquillante TDM, ACF barra protectora, Clinique gel limpieza, Pad Coony, Hisopos Meraki, Carmex,
+  Gel de ceja L’Oréal, Máscara Maybelline, Corrector Maybelline, Sombra en barra Extrime, Delineador de labios Extrime,
+  Iluminador Avon, Gloss Extrime, Esponja Coony. </li>
+      <li><b>5.º Premio:</b> Hair & Body / Accesorios (Kit C)</b><br>
+  Pad Coony, Hisopos Meraki, Espátula Coony mascarilla, Mascara Maybelline, Sombra en barra, 
+  Gel delineador, Labial TDM, Mascara de Labios TDM, Protector térmico Primark,
+  Sellador Pantene, Dove Serum</li>
+      <li><b>6.º Premio:</b> Como Victoria’s Secret (Body Splash y Crema)</b><br>
+    </ul>
+    <small class="sub">*Si querés, después fijamos fecha tope de sorteo; modalidad abajo.</small>
+  </div>
+
+  <!-- Selección -->
+  <div class="card" style="margin-top:12px;">
+    <div class="label dark">Selección de números</div>
+
+    <div class="legend" style="margin-top:10px">
+      <span class="chip"></span> Disponible
+      <span class="chip sel"></span> Seleccionado
+      <span class="chip sold"></span> Reservado/PAGO
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <div id="summary" class="sum">Seleccionados: —</div>
+
+    <div class="actions">
+      <button id="confirm" class="btn primary" disabled>Confirmar por WhatsApp</button>
+      <button id="clear" class="btn secondary">Limpiar selección de números</button>
+    </div>
+  </div>
+
+  <!-- Bases -->
+  <div class="card" style="margin-top:12px;">
+    <h3>📝 Bases & Condiciones</h3>
+    <p>• <b>Cómo participar:</b> Elegís número(s) disponible(s), pagás y enviás comprobante por WhatsApp.</p>
+    <p>• <b>Confirmación:</b> El/los número(s) quedan “PAGO”. Si solo reservás, la reserva dura 15 MINUTOS.</p>
+    <p>• <b>Sorteo:</b> Cuando se vendan los 500 números (se fija fecha tope).</p>
+    <p>• <b>Modalidad de sorteo:</b> Quiniela Nocturna de la Ciudad (CABA), últimas 3 cifras del 1.º premio.</p>
+    <p>• <b>Transparencia:</b> Se publica el listado final, comprobante del sorteo y persona ganadxr.</p>
+    <p>• <b>Entrega:</b>En mano en Palmas del Pilar, Tortugas Open Mall, Solar Shopping o envío a cargo del/la ganador/a.</p>
+    <p>• <b>Devoluciones:</b> No aplica una vez acreditado el pago.</p>
+  </div>
+
+  <!-- Contacto & Medios de pago -->
+  <div class="card" style="margin-top:12px;">
+    <h3>📲 Contacto & Medios de pago</h3>
+
+    <div class="paygrid">
+      <div><b>Instagram</b> <a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a></div>
+      <div><b>Medio de pago único</b> Transferencia</div>
+      <div><b>Cuenta</b> de Mercado Pago</div>
+      <div><b>Titular</b> Francesca Lisanti</div>
+      <div><b>Alias</b> cukirescatados</div>
+      <div><b>CVU</b> 0000003100061623575458</div>
+    </div>
+
+    <div class="qr">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F5491133328404" alt="QR WhatsApp">
+      <a class="btn" href="https://wa.me/5491133328404" target="_blank" rel="noopener">Abrir WhatsApp</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  /* ========= CONFIG ========= */
+  const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec"; // ← pegá tu /exec
+  const WHATS      = "5491133328404";
+  const MAX_SELECT = 4;
+  const PRICES     = {1:10000, 2:18000, 3:26000};
+  const ALIAS      = "cukirescatados";
+  const CVU        = "0000003100061623575458";
+
+  const MAX_N = 500; // 👈 500 números
+
+  const grid      = document.getElementById('grid');
+  const summary   = document.getElementById('summary');
+  const btnConfirm= document.getElementById('confirm');
+  const btnClear  = document.getElementById('clear');
+  const st        = document.getElementById('st');
+
+  let selected = new Set();
+  let taken    = new Set();
+  const inflight = new Set(); // números con petición en curso
+
+  const clientId = (() => {
+    const k = 'raffleClientId';
+    let v = localStorage.getItem(k);
+    if(!v){ v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()); localStorage.setItem(k,v); }
+    return v;
+  })();
+
+  const fmt   = n => n.toString().padStart(3,'0');
+  const pesos = n => n.toLocaleString('es-AR');
+
+  function bestPrice(k){
+    const tiers = Object.keys(PRICES).map(Number).sort((a,b)=>a-b);
+    const dp = Array(k+1).fill(Infinity); dp[0]=0;
+    for(let i=1;i<=k;i++){ for(const t of tiers){ if(t<=i) dp[i]=Math.min(dp[i],dp[i-t]+PRICES[t]); } }
+    return dp[k] || 0;
+  }
+
+  function renderGridBase(){
+    const frag = document.createDocumentFragment();
+    for(let i=1;i<=MAX_N;i++){
+      const d = document.createElement('div');
+      d.className = 'num';
+      d.textContent = fmt(i);
+      d.addEventListener('click', () => handleToggle(i, d));
+      frag.appendChild(d);
+    }
+    grid.innerHTML = '';
+    grid.appendChild(frag);
+  }
+
+  function applyTaken(){
+    for(let i=1;i<=MAX_N;i++){
+      const el = grid.children[i-1];
+      if(!el) continue;
+      if(taken.has(i)){
+        el.classList.add('sold');
+        el.replaceWith(el.cloneNode(true)); // quita listeners si ya está vendido
+      }else{
+        el.classList.remove('sold');
+      }
+    }
+  }
+
+  function repaintSelections(){
+    document.querySelectorAll('.num.sel').forEach(el=>el.classList.remove('sel'));
+    for(const n of selected){
+      const el = grid.children[n-1];
+      if(el && !el.classList.contains('sold')) el.classList.add('sel');
+    }
+  }
+
+  function updateSummary(){
+    const arr = [...selected].sort((a,b)=>a-b).map(fmt);
+    const k = arr.length, total = k ? bestPrice(k) : 0;
+    summary.textContent = k
+      ? `Seleccionados: ${arr.join(', ')} • Total a pagar: $${pesos(total)}`
+      : 'Seleccionados: —';
+    btnConfirm.disabled = (k===0);
+  }
+
+  async function apiGet(params){
+    const q = new URLSearchParams(params).toString();
+    const url = API_BASE + (API_BASE.includes('?') ? '&' : '?') + q;
+    const r = await fetch(url, {cache:'no-store'});
+    if(!r.ok) throw new Error('GET '+r.status);
+    return r.json();
+  }
+  async function apiPost(params){
+    const r = await fetch(API_BASE, {
+      method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(params)
+    });
+    if(!r.ok) throw new Error('POST '+r.status);
+    return r.json();
+  }
+
+  function handleToggle(n, el){
+    if (inflight.has(n) || el.classList.contains('sold')) return;
+
+    if (selected.has(n)){
+      selected.delete(n);
+      el.classList.remove('sel');
+      updateSummary();
+      inflight.add(n);
+      apiPost({action:'release', clientId, ns:String(n)})
+        .finally(()=>inflight.delete(n));
+      return;
+    }
+
+    if (selected.size >= MAX_SELECT){
+      pulse(summary);
+      return;
+    }
+
+    selected.add(n);
+    el.classList.add('sel');
+    updateSummary();
+
+    inflight.add(n);
+    apiPost({action:'hold', clientId, ns:String(n)})
+      .then(res=>{
+        if (!(res.ok && res.ok.includes(n))){
+          selected.delete(n);
+          el.classList.remove('sel');
+          taken.add(n);
+          el.classList.add('sold');
+          updateSummary();
+          st.textContent = "Ese número se reservó recién. Elegí otro.";
+        }
+      })
+      .catch(()=>{ /* si falla red, el hold expira por TTL */ })
+      .finally(()=>inflight.delete(n));
+  }
+
+  function pulse(el){
+    el.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],{duration:300});
+  }
+
+  function waLink(){
+    const arr = [...selected].sort((a,b)=>a-b).map(fmt);
+    const total = bestPrice(arr.length);
+    const msg = `Hola Mar! Quiero participar con el/los número(s): ${arr.join(', ')}.
+Total a pagar: $${pesos(total)}.
+
+Alias: ${ALIAS}
+CVU: ${CVU}
+
+Te envío el comprobante ahora.`;
+    return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
+  }
+
+  btnConfirm.addEventListener('click', async ()=>{
+    if(selected.size===0) return;
+    const ns = [...selected].join(',');
+    const link = waLink();
+
+    btnConfirm.disabled = true;
+    st.textContent = 'Confirmando…';
+
+    const fallback = setTimeout(()=>{ window.location.href = link; }, 1200);
+    try{
+      const res = await apiPost({action:'finalize', clientId, ns});
+      clearTimeout(fallback);
+      if(res.lost && res.lost.length){
+        for(const n of res.lost){ taken.add(Number(n)); selected.delete(Number(n)); }
+        applyTaken(); repaintSelections(); updateSummary();
+        st.textContent = 'Algunos números se agotaron. Elegí otros.';
+        btnConfirm.disabled = false;
+        return;
+      }
+      window.location.href = link;
+    }catch(e){
+      window.location.href = link;
+    }
+  });
+
+  btnClear.addEventListener('click', async ()=>{
+    const ns = [...selected].join(',');
+    selected.clear(); repaintSelections(); updateSummary();
+    if(ns){ try{ await apiPost({action:'release', clientId, ns}); }catch(_){ } }
+  });
+
+  async function refreshState(){
+    try{
+      const res = await apiGet({action:'state'});
+      taken = new Set([...(res.sold||[]), ...(res.reserved||[])]);
+      applyTaken(); repaintSelections(); updateSummary();
+      st.textContent = 'Estado: conectado ✓';
+    }catch(e){
+      st.textContent = 'Estado: sin conexión';
+    }
+  }
+
+  // Inicio
+  renderGridBase();
+  refreshState();
+  setInterval(refreshState, 15000);
+</script>
+</body>
+</html>
