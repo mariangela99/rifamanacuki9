@@ -6,55 +6,85 @@
 <meta name="robots" content="noindex,nofollow">
 <title>🎟️ Rifa Solidaria – Camada Cuki  (varios precios)</title>
 <style>
-  :root{
-    /* Paleta verde pastel + verde oscuro */
-    --bg1:#ecfdf5; --bg2:#d1fae5; --card:#f0fdf4; --border:#bbf7d0;
-    --text:#083c2b; --muted:#0f5132; --accent:#10b981; --accent2:#34d399;
-    --chip:#dcfce7; --sold:#e8f5ef; --dark:#065f46;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-       background:linear-gradient(120deg,var(--bg1),var(--bg2));color:var(--text)}
-  .wrap{max-width:1100px;margin:28px auto;padding:16px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;
-        padding:18px;box-shadow:0 10px 30px rgba(6,95,70,.08)}
-  .hero{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-  h1{margin:0 0 6px;font-size:clamp(1.6rem,3.2vw,2.2rem)}
-  .sub{color:var(--muted);font-weight:600}
-  .pills span{display:inline-block;border:1px solid var(--border);color:#065f46;
-              background:var(--chip);border-radius:999px;padding:6px 12px;margin-right:8px;font-weight:800}
-  .status{font-size:.9rem;color:var(--muted)}
+ 
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
+:root{
+  --green:#0f5c3b;        /* banda/títulos */
+  --green-2:#146b46;      /* hover */
+  --peach:#f4c5c6;        /* desert peach (texto en títulos) */
+  --peach-2:#ffe8ea;      /* cards */
+  --bg1:#ffeef1;          /* fondo */
+  --ink:#0a0a0a;          /* texto casi negro */
+  --border:#e7bac1;       /* bordes suaves */
+  --sold:#f2f2f2;         /* reservado/pago */
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:linear-gradient(120deg,var(--peach),var(--bg1));
+  color:var(--ink);
+}
+.wrap{max-width:1100px;margin:28px auto;padding:16px}
 
-  .label{display:inline-block;padding:8px 12px;border-radius:10px;font-weight:800}
-  .label.dark{background:var(--dark);color:#fff}
+/* Tarjetas */
+.card{
+  background:var(--peach-2);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 10px 30px rgba(15,92,59,.10);
+}
 
-  /* Grilla 500 números */
-  .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:10px;margin-top:10px}
-  .num{background:#fff;border:1px solid var(--border);border-radius:12px;
-       padding:10px 6px;text-align:center;font-weight:800;cursor:pointer;user-select:none;
-       box-shadow:0 1px 0 rgba(0,0,0,.05);transition:.1s ease;
-       font-size:clamp(13px,3.4vw,17px);line-height:1;letter-spacing:.4px}
-  .num:hover{transform:translateY(-1px);border-color:var(--accent2)}
-  .num.sel{background:var(--dark);color:#fff;border-color:var(--dark);box-shadow:0 0 0 2px rgba(6,95,70,.18) inset}
-  .num:active{transform:scale(.98)}
-  .num:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .num.sold{background:var(--sold);color:#7a8b85;text-decoration:line-through;cursor:not-allowed}
+/* Título estilo “GREEN” */
+.title-green{
+  font-family:'League Spartan',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  text-transform:uppercase; font-weight:900; letter-spacing:.5px;
+  color:var(--peach); background:var(--green);
+  padding:10px 14px; border-radius:14px; display:inline-block;
+}
 
-  .legend{display:flex;gap:12px;align-items:center;color:var(--muted);flex-wrap:wrap;margin-top:8px}
-  .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-  .chip.sel{background:#e6f7ef;border-color:var(--accent)}
-  .chip.sold{background:var(--sold)}
+/* Cabecera */
+.hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.sub{color:#1f1f1f;font-weight:600}
 
-  .sum{margin-top:8px;font-weight:800;color:#0b4a37}
+/* Leyenda (en negro) */
+.legend{display:flex;gap:12px;align-items:center;color:#111;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
+.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
+.legend .chip.sel{background:#e9f6f0;border-color:var(--green)}
+.legend .chip.sold{background:var(--sold)}
 
-  .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-  .btn{all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
-       border:1px solid var(--border);background:linear-gradient(180deg,#ecfdf5,#dcfce7);
-       color:var(--dark);box-shadow:0 1px 0 rgba(0,0,0,.04);text-align:center}
-  .btn.primary{background:var(--dark);color:#fff;border-color:var(--dark)}
-  .btn.primary:hover:not(:disabled){filter:brightness(.96);transform:translateY(-1px)}
-  .btn:disabled{opacity:.5;cursor:not-allowed}
-  .btn.secondary{background:#fff}
+/* Grilla */
+.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:12px;margin-top:10px}
+.num{
+  text-align:center;padding:12px 6px;border-radius:12px;border:1px solid var(--border);
+  background:#fff;font-weight:800;user-select:none;cursor:pointer;
+  transition:.12s ease;box-shadow:0 2px 0 rgba(0,0,0,.04);
+  font-size:clamp(14px,3.2vw,18px);line-height:1;letter-spacing:.5px;
+}
+.num:hover{transform:translateY(-1px);border-color:var(--green-2)}
+.num.sel{
+  background:var(--green); color:#fff; border-color:var(--green);
+  box-shadow:0 0 0 2px rgba(15,92,59,.15) inset;
+}
+.num.sold{background:var(--sold);color:#9a9a9a;text-decoration:line-through;cursor:not-allowed}
+
+/* Acciones */
+.sum{margin-top:8px;font-weight:800;color:#2a0e11}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
+  border:1px solid var(--border);background:linear-gradient(180deg,var(--peach),#ffdbe0);
+  color:#2a0f11;box-shadow:0 1px 0 rgba(0,0,0,.04)
+}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.secondary{background:#fff;color:#0f2b1e}
+.status{font-size:.9rem;color:#2a0e11}
+
+/* Responsive columnas */
+@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
+@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} }
+@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} }
 
   /* Premios & Pago */
   .prizes li{margin:6px 0}
