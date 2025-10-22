@@ -16,78 +16,64 @@
 <title>🎟️ Rifa Solidaria – Camada Cuki  (varios precios)</title>
 <style>
 
+/* === PALETA PASTEL NUEVA === */
 :root{
-  --green:#0f5c3b;        /* banda/títulos */
-  --green-2:#146b46;      /* hover */
-  --peach:#f4c5c6;        /* desert peach (texto en títulos) */
-  --peach-2:#ffe8ea;      /* cards */
-  --bg1:#ffeef1;          /* fondo */
-  --ink:#0a0a0a;          /* texto casi negro */
-  --border:#e7bac1;       /* bordes suaves */
-  --sold:#f2f2f2;         /* reservado/pago */
+  /* rosa + variantes */
+  --rose:   #f3b2be;   /* rosa principal (fondo) */
+  --rose-2: #ffe1e6;   /* rosa claro (cards) */
+
+  /* neutro suave y verdes de la paleta */
+  --taupe:  #d9cfc9;   /* gris–taupe */
+  --sage:   #a9cbb6;   /* verde salvia (hover/bordes) */
+  --mint:   #bfeee0;   /* menta (detalles suaves) */
+
+  /* utilitarios */
+  --ink:    #101010;   /* texto casi negro */
+  --border: #f0c9cf;   /* borde suave rosado */
+  --sold:   #f1f1f1;   /* reservado/pago */
+
+  /* verde oscuro para la selección (más contraste) */
+  --accent-dark:#2b6a58;
 }
-*{box-sizing:border-box}
+
+/* fondo general en rosa */
 body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  background:linear-gradient(120deg,var(--peach),var(--bg1));
+  background:linear-gradient(120deg,var(--rose), #ffe8ec);
   color:var(--ink);
 }
-.wrap{max-width:1100px;margin:28px auto;padding:16px}
 
-/* Tarjetas */
+/* tarjetas en rosa claro */
 .card{
-  background:var(--peach-2);
+  background:var(--rose-2);
   border:1px solid var(--border);
   border-radius:16px;
   padding:18px;
-  box-shadow:0 10px 30px rgba(15,92,59,.10);
+  box-shadow:0 10px 30px rgba(15,92,59,.08);
 }
 
-/* Título estilo “GREEN” */
-.title-green{
-  font-family:'League Spartan',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  text-transform:uppercase; font-weight:900; letter-spacing:.5px;
-  color:var(--peach); background:var(--green);
-  padding:10px 14px; border-radius:14px; display:inline-block;
-}
+/* leyenda en negro (como pediste) */
+.legend{ color:#000; }
 
-/* Cabecera */
-.hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sub{color:#1f1f1f;font-weight:600}
+/* números */
+.num:hover{ transform:translateY(-1px); border-color:var(--sage); }
 
-/* Leyenda (en negro) */
-.legend{display:flex;gap:12px;align-items:center;color:#111;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
-.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-.legend .chip.sel{background:#e9f6f0;border-color:var(--green)}
-.legend .chip.sold{background:var(--sold)}
-
-/* Grilla */
-.grid{display:grid;grid-template-columns:repeat(10,1fr);gap:12px;margin-top:10px}
-.num{
-  text-align:center;padding:12px 6px;border-radius:12px;border:1px solid var(--border);
-  background:#fff;font-weight:800;user-select:none;cursor:pointer;
-  transition:.12s ease;box-shadow:0 2px 0 rgba(0,0,0,.04);
-  font-size:clamp(14px,3.2vw,18px);line-height:1;letter-spacing:.5px;
-}
-.num:hover{transform:translateY(-1px);border-color:var(--green-2)}
+/* número seleccionado: verde oscuro, bien notorio */
 .num.sel{
-  background:var(--green); color:#fff; border-color:var(--green);
-  box-shadow:0 0 0 2px rgba(15,92,59,.15) inset;
+  background:var(--accent-dark);
+  color:#fff;
+  border-color:var(--accent-dark);
+  box-shadow:0 0 0 2px rgba(43,106,88,.15) inset;
 }
-.num.sold{background:var(--sold);color:#9a9a9a;text-decoration:line-through;cursor:not-allowed}
 
-/* Acciones */
-.sum{margin-top:8px;font-weight:800;color:#2a0e11}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+/* botón con gradiente rosado */
 .btn{
-  all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
-  border:1px solid var(--border);background:linear-gradient(180deg,var(--peach),#ffdbe0);
-  color:#2a0f11;box-shadow:0 1px 0 rgba(0,0,0,.04)
+  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, var(--rose), #ffd5dc);
+  color:#2a0f11; box-shadow:0 1px 0 rgba(0,0,0,.04);
 }
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.secondary{background:#fff;color:#0f2b1e}
-.status{font-size:.9rem;color:#2a0e11}
 
 /* Responsive columnas */
 @media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
@@ -126,7 +112,7 @@ body{
   <div class="card" style="margin-top:12px;">
     <h3>🏆Beneficios: Premios</h3>
     <ul class="prizes">
-      <li><b>1.º Premio:</b>2 Entradas <b>Instagram</b> <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>(campo centenario) Beneficios: Early entrance.Kit de merch exclusivo.Credencial conmemorativa.</li>
+      <li><b>1.º Premio:</b>2 Entradas <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>(campo centenario) Beneficios: Early entrance.Kit de merch exclusivo.Credencial conmemorativa.</li>
       <li><b>2.º Premio:</b> Perfumes (combo)
   Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
       <li><b>3.º Premio:</b> Make up / Skin care (Kit A)</b><br>
@@ -145,7 +131,7 @@ body{
 <li><b>6.º Premio:</b> Combo Victoria’s Secret<br><span style="opacity:.85">Body Splash y Crema</span></li>
 
     </ul>
-    <small class="sub">*Modalidad abajo.</small>
+    <small class="sub">*Modalidad y medios de pago seguimos abajo.</small>
   </div>
 
   <!-- Selección -->
@@ -173,30 +159,19 @@ body{
     <h3>📝 Bases & Condiciones</h3>
    <!-- BASES & CONDICIONES (copiar/pegar tal cual en tu página) -->
 <div class="card bases" style="margin-top:12px;">
-    <li><b>Cantidad de números:</b> del <b>001</b> al <b>500</b>.</li>
     <li><b>Cómo participar:</b> elegís número(s) disponible(s) en la web y escribís por WhatsApp para confirmar.
       El/los número(s) quedan en estado “Reservado” hasta acreditar el pago.</li>
+  <li><b>Sorteo:</b> Por persona solo máximo 4 números</li>
     <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
-    <li><b>Sorteo público:</b> se define con la <b>Quiniela Nocturna CABA</b> de la fecha (?). Se usan las posiciones del <b>1.º al 6.º premio</b> para asignar los 6 premios de esta rifa en ese mismo orden.</li>
-    <li><b>Determinación de ganadores (regla técnica):</b>
+    <li><b>Sorteo público:</b> (punto a solucionar)</li>
       <ol>
-        <li>De cada posición del extracto (1.º, 2.º, …) se toman las <b>últimas 3 cifras</b> (valor 000–999).</li>
-        <li>Se mapea al rango 001–500 con: <code>n = (xxx % 500) + 1</code>
-          <div style="opacity:.9;margin-top:4px">
-            Ejemplos: 824 → 325 · 592 → 93 · 318 → 319 · 542 → 43 · 755 → 256 · 770 → 271 · 000 → 500 · 999 → 500
-          </div>
-        </li>
-        <li><b>Sin repetidos:</b> si un número ya resultó ganador, se usa la <b>siguiente posición</b> del extracto (7.º, 8.º, …) hasta completar 6 ganadores únicos.</li>
-        <li><b>Número no vendido (si aplica):</b> si el número obtenido no está vendido, el premio <b>corre hacia abajo</b> (ej.: 353 → 352 → 351 → …) hasta encontrar un número vendido.</li>
-      </ol>
-    </li>
     <li><b>Premios:</b> se publican listados (Premio 1 → 1.º ganador, Premio 2 → 2.º ganador, …). No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
     <li><b>Publicación y entrega:</b> se publican ganadores/as en Instagram y WhatsApp dentro de las <b>24 h</b>. Para validar, se solicita comprobante de pago y datos del/los número(s).
       <b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, El Solar Shopping</i> o envío a cargo del/la ganador/a (a coordinar).
     </li>
     <li><b>Plazo para reclamar:</b> <b>7 días corridos</b> desde la publicación. Pasado ese plazo, el premio se considera <b>desierto</b>.</li>
     <li><b>Devoluciones:</b> no aplican una vez acreditado el pago.</li>
-    <li><b>Transparencia:</b> se conservarán capturas del extracto de Quiniela y del procedimiento de asignación. La participación implica la <b>aceptación total</b> de estas bases.</li>
+    <li><b>Transparencia:</b> se conservarán capturas del extracto de ? y del procedimiento de asignación. La participación implica la <b>aceptación total</b> de estas bases.</li>
     <li><b>Aviso legal:</b> esta promoción <b>no está patrocinada, avalada ni administrada</b> por Meta, Instagram o WhatsApp, ni asociada a ellos.</li>
   </ul>
 </div>
@@ -215,7 +190,7 @@ body{
       <div><b>CVU</b> 0000003100061623575458</div>
       <div><b>Alias</b> cukirescatados</div>
     </div>
-    <div><b>Instagram</b> <a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a></div>
+    <div><a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a></div>
 
     <div class="qr">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F5491133328404" alt="QR WhatsApp">
