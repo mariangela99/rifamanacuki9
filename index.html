@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>🎟️ Rifa Solidaria – Camada Cuki  (varios precios)</title>
-<style>
- 
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
 :root{
-  --green:#0f5c3b;        /* banda/títulos */
-  --green-2:#146b46;      /* hover */
-  --peach:#f4c5c6;        /* desert peach (texto en títulos) */
-  --peach-2:#ffe8ea;      /* cards */
-  --bg1:#ffeef1;          /* fondo */
-  --ink:#0a0a0a;          /* texto casi negro */
-  --border:#e7bac1;       /* bordes suaves */
-  --sold:#f2f2f2;         /* reservado/pago */
+  --green:#2c3e76;        /* banda/títulos */
+  --green-2:#3d4f9f;      /* hover */
+  --peach:#f7f9ff;        /* texto en títulos */
+  --peach-2:#eef1ff;      /* cards */
+  --bg1:#d6e4ff;          /* fondo */
+  --ink:#0d1333;          /* texto principal */
+  --border:#c4cff5;       /* bordes suaves */
+  --sold:#f2f4fb;         /* reservado/pago */
 }
 *{box-sizing:border-box}
 body{
@@ -33,7 +33,7 @@ body{
   border:1px solid var(--border);
   border-radius:16px;
   padding:18px;
-  box-shadow:0 10px 30px rgba(15,92,59,.10);
+  box-shadow:0 10px 30px rgba(44,62,118,.12);
 }
 
 /* Título estilo “GREEN” */
@@ -48,10 +48,10 @@ body{
 .hero{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .sub{color:#1f1f1f;font-weight:600}
 
-/* Leyenda (en negro) */
-.legend{display:flex;gap:12px;align-items:center;color:#111;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
+/* Leyenda */
+.legend{display:flex;gap:12px;align-items:center;color:#1f275c;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
 .legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-.legend .chip.sel{background:#e9f6f0;border-color:var(--green)}
+.legend .chip.sel{background:#e4e8ff;border-color:var(--green)}
 .legend .chip.sold{background:var(--sold)}
 
 /* Grilla */
@@ -65,21 +65,21 @@ body{
 .num:hover{transform:translateY(-1px);border-color:var(--green-2)}
 .num.sel{
   background:var(--green); color:#fff; border-color:var(--green);
-  box-shadow:0 0 0 2px rgba(15,92,59,.15) inset;
+  box-shadow:0 0 0 2px rgba(44,62,118,.18) inset;
 }
 .num.sold{background:var(--sold);color:#9a9a9a;text-decoration:line-through;cursor:not-allowed}
 
 /* Acciones */
-.sum{margin-top:8px;font-weight:800;color:#2a0e11}
+.sum{margin-top:8px;font-weight:800;color:#1f275c}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .btn{
   all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
-  border:1px solid var(--border);background:linear-gradient(180deg,var(--peach),#ffdbe0);
-  color:#2a0f11;box-shadow:0 1px 0 rgba(0,0,0,.04)
+  border:1px solid var(--border);background:linear-gradient(180deg,#e4e9ff,#ccd7ff);
+  color:#1f275c;box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.secondary{background:#fff;color:#0f2b1e}
-.status{font-size:.9rem;color:#2a0e11}
+.btn.secondary{background:#fff;color:#1f275c}
+.status{font-size:.9rem;color:#1f275c}
 
 /* Responsive columnas */
 @media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
@@ -144,7 +144,7 @@ body{
   <div class="card" style="margin-top:12px;">
     <div class="label dark">Selección de números</div>
 
-<div class="legend" style="margin-top:10px; color:#000;">
+<div class="legend" style="margin-top:10px;">
   <span class="chip"></span> Disponible
   <span class="chip sel"></span> Seleccionado
   <span class="chip sold"></span> Reservado/PAGO
