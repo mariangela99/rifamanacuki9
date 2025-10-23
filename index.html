@@ -7,37 +7,40 @@
 <title>🎟️ Rifa Solidaria – Manada Cuki (varios premios)</title>
 
 <style>
+  
 :root{
-  
-  --bg1:#F3F9F6;   /* mint cream */
-  --bg2:#FFF5F7;   /* rose mist */
+  /* Fondo duotono sin verde/rosa/blanco */
+  --bg1:#EEF2FF;   /* periwinkle muy suave (azul-violeta) */
+  --bg2:#F3E8FF;   /* lila brumoso */
 
-  
-  --card:#FDFCF7;  /* parchment cálido (no blanco puro) */
-  --border:#E7E2D9;/* borde tibio, sin gris frío */
+  /* Contenedores (sin blanco puro) */
+  --card:#F6F4FF;  /* lavanda pálido */
+  --border:#DCD7F5;
 
-  
-  --ink:#212321;   /* casi negro con tinte oliva */
-  --muted:#5A5F57; /* secundario oliva-gris */
+  /* Texto */
+  --ink:#131528;   /* azul noche */
+  --muted:#494E7E; /* secundario frío */
 
+  /* Estados */
+  --chip:#E6E9FF;  /* chip “Seleccionado” */
+  --sold:#ECEAF6;  /* reservado/pago */
 
-  --chip:#EAF6F1;  /* chip seleccionado en leyenda */
-  --sold:#EFEDE8;  /* reservado/pago cálido */
-
-
-  --accent:#2A7F62;   /* principal (selección/etiqueta) */
-  --accent-2:#3EA182; /* hover/borde activo */
+  /* Acentos (púrpuras) */
+  --accent:#4C1D95;   /* púrpura profundo (selección/etiqueta) */
+  --accent-2:#6D28D9; /* hover/borde activo */
 }
+
 
 
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  font-family: Arial, Helvetica, sans-serif;   /* fuente básica */
+  font-family: Arial, Helvetica, sans-serif; /* o la que uses */
   color:var(--ink);
-  background:linear-gradient(135deg,var(--bg1), var(--bg2)); /* ← ya no blanco */
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
 }
+
 
 .wrap{max-width:1100px;margin:28px auto;padding:16px}
 
@@ -47,8 +50,9 @@ body{
   border:1px solid var(--border);
   border-radius:16px;
   padding:18px;
-  box-shadow:0 10px 28px rgba(42,127,98,.08);
+  box-shadow:0 10px 28px rgba(76,29,149,.08);
 }
+
 
 .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
 h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
@@ -79,18 +83,15 @@ h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
 @media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)!important} }
 
 .num{
-  text-align:center; padding:12px 6px; border-radius:12px;
-  border:1px solid var(--border); background:#fff; font-weight:800;
-  user-select:none; cursor:pointer; transition:.12s ease;
-  box-shadow:0 2px 0 rgba(0,0,0,.04);
-  font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
+  background:#F5F7FF;        /* NO blanco: azul muy claro */
+  border:1px solid var(--border);
 }
-.num:hover{ transform:translateY(-1px); border-color:var(--accent-2); }
+.num:hover{ border-color:var(--accent-2); transform:translateY(-1px); }
 .num.sel{
   background:var(--accent);
   border-color:var(--accent);
   color:#fff;
-  box-shadow:0 0 0 2px rgba(42,127,98,.18) inset;
+  box-shadow:0 0 0 2px rgba(109,40,217,.18) inset;
 }
 .num.sold{background:var(--sold);color:#8c8a86;text-decoration:line-through;cursor:not-allowed}
 
@@ -102,9 +103,12 @@ h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
   background:linear-gradient(180deg,#FAFEFB,#EEF7F3);
   color:#21483B; box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.secondary{background:#fff}
-.status{font-size:.9rem;color:#2A3A31}
+.btn{
+  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,#EEF1FF,#E9EDFF);
+  color:#1D234A; box-shadow:0 1px 0 rgba(0,0,0,.04);
+}
 
 .prizes li{margin:6px 0}
 .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
@@ -251,7 +255,7 @@ const MAX_N      = 500;
 
 /* ========= Cache-buster v3 ========= */
 (function () {
-  const v = 'v8';
+  const v = 'v9';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
