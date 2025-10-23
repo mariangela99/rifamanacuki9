@@ -1,55 +1,58 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>🎟️ Rifa Solidaria – Manada Cuki  (varios premios)</title>
-<!-- En <head>, ANTES de <style> -->
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
+<title>🎟️ Rifa Solidaria – Manada Cuki (varios premios)</title>
 
 <style>
-  === PALETA iOS PASTEL (solo reemplazá tu :root por este) === */
-/* === COLORES iOS PASTEL v3 – reemplaza tu :root y las reglas indicadas === */
+/* ===== Paleta pastel tipo iOS ===== */
 :root{
-  /* Fondo y tarjetas */
-  --bg1:    #F2F2F7;  /* iOS grouped background */
-  --card:   #F7FFF9;  /* carta con leve tinte mint */
-  --border: #CFE8DA;
-
-  /* Texto */
-  --text:   #1C1C1E;  /* alto contraste iOS */
-  --muted:  #2F3A34;
-
-  /* Estados */
-  --sold:   #EFF4F1;
-
-  /* Acentos iOS */
-  --accent:   #34C759; /* systemGreen */
-  --accent-2: #2DBA55; /* hover */
+  --bg1:#f7f7fb;          /* fondo general */
+  --card:#ffffff;         /* tarjetas */
+  --border:#e8e8ef;       /* bordes suaves */
+  --ink:#0f0f0f;          /* texto */
+  --muted:#5c5c66;        /* texto secundario */
+  --accent:#0f5c3b;       /* verde oscuro (selección, etiqueta) */
+  --accent-2:#1c7a53;     /* hover */
+  --sold:#f1f1f4;         /* reservado/pago */
 }
 
-/* FONDO general – asegúrate de NO tener otra regla body anterior que lo pise */
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  background-color:#F2F2F7; /* fallback sólido */
-  background:linear-gradient(120deg,var(--bg1), #ECFFF6);
-  color:var(--text);
+  font-family:"Courier New", Courier, monospace; /* 👈 Fuente global */
+  color:var(--ink);
+  background:linear-gradient(180deg,#fdfdff, var(--bg1));
 }
+.wrap{max-width:1100px;margin:28px auto;padding:16px}
 
-/* Tarjetas */
+/* ===== Tarjetas ===== */
 .card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:16px;
   padding:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,.05);
+  box-shadow:0 10px 30px rgba(15,92,59,.06);
 }
 
-/* Etiqueta “Selección de números” en verde iOS */
-.label{font-weight:900;margin:4px 0 8px;}
+/* ===== Cabecera ===== */
+.hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+h1{margin:0 0 8px 0;font-size:clamp(20px,3.2vw,30px)}
+.sub{color:var(--muted);font-weight:600}
+.pills span{display:inline-block;border:1px solid var(--border);background:#fafafa;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800}
+
+/* ===== Leyenda ===== */
+.legend{display:flex;gap:12px;align-items:center;color:#000;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
+.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
+.legend .chip.sel{background:#e9f6f0;border-color:var(--accent)}
+.legend .chip.sold{background:var(--sold)}
+
+/* ===== Etiqueta fuerte ===== */
+.label{font-weight:900;margin:4px 0 8px}
 .label.dark{
   background:var(--accent);
   color:#fff;
@@ -59,58 +62,76 @@ body{
   letter-spacing:.3px;
 }
 
-/* Leyenda con mejor contraste */
-.legend{ color:#000; }
-.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-.legend .chip.sel{ background:#E6F9ED; border-color:var(--accent); }
-.legend .chip.sold{ background:var(--sold); }
-
-/* Fuerza grilla en columnas (evita que salgan uno bajo otro) */
+/* ===== Grilla de números ===== */
 .grid{
-  display:grid !important;
-  grid-template-columns:repeat(10, minmax(0,1fr)) !important;
-  gap:12px !important;
+  display:grid;
+  grid-template-columns:repeat(10, minmax(0,1fr));
+  gap:12px;
   margin-top:10px;
 }
-@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)!important;} }
-@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)!important;} }
-@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)!important;} }
+@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
+@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} }
+@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} }
 
-/* Números */
 .num{
-  text-align:center;padding:12px 6px;border-radius:12px;border:1px solid var(--border);
-  background:#fff;font-weight:800;user-select:none;cursor:pointer;
-  transition:.12s ease;box-shadow:0 2px 0 rgba(0,0,0,.04);
-  font-size:clamp(13px,3.2vw,17px);line-height:1;letter-spacing:.5px;
+  text-align:center;
+  padding:12px 6px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-weight:800;
+  user-select:none;
+  cursor:pointer;
+  transition:.12s ease;
+  box-shadow:0 2px 0 rgba(0,0,0,.04);
+  font-size:clamp(14px,3.2vw,18px);
+  line-height:1;
+  letter-spacing:.5px;
 }
-.num:hover{ transform:translateY(-1px); border-color:var(--accent-2); }
-
-/* Seleccionado – verde iOS bien visible */
+.num:hover{transform:translateY(-1px);border-color:var(--accent-2)}
 .num.sel{
   background:var(--accent);
+  color:#fff;
   border-color:var(--accent);
-  color:# fff;
-  box-shadow:0 0 0 2px rgba(52,199,89,.18) inset;
+  box-shadow:0 0 0 2px rgba(15,92,59,.15) inset;
 }
+.num.sold{background:var(--sold);color:#9a9a9a;text-decoration:line-through;cursor:not-allowed}
 
-/* Botón principal estilo iOS pastel */
-.btn.primary{
-  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
-  border:1px solid var(--border);
-  background:linear-gradient(180deg, #E8FAEE,#D7F7E4);
-  color:#0F3D26; box-shadow:0 1px 0 rgba(0,0,0,.04);
-
+/* ===== Acciones ===== */
+.sum{margin-top:8px;font-weight:800;color:#2a0e11}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.btn{
+  all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
+  border:1px solid var(--border);background:linear-gradient(180deg,#f9fafb,#f1f5f9);color:#17202a;
+  box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.secondary{background:#fff}
+.status{font-size:.9rem;color:#2a0e11}
+
+/* ===== Listas ===== */
+.prizes li{margin:6px 0}
+
+/* ===== Pago & QR ===== */
+.paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
+.paygrid b{display:block}
+.qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff} /* 👈 más chico */
+
+/* ===== Notas y Legal (misma letra y tamaño) ===== */
+.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#555}
+
+/* separador al final para el aviso legal */
+.footer-spacer{height:12px}
 </style>
-
 </head>
 <body>
 <div class="wrap">
 
-  <!-- Encabezado -->
+  <!-- ===== Encabezado ===== -->
   <div class="card hero">
     <div>
-      <h1>🎟️ Súper rifa Camada Cuki – (Varios Premios)</h1>
+      <h1>🎟️ Rifa Solidaria – Manada Cuki (Varios Premios)</h1>
       <div class="sub">Elegí hasta 4 números y escribime por WhatsApp 💬</div>
       <div class="pills" style="margin-top:6px">
         <span>$10.000 c/u</span><span>2 × $18.000</span><span>3 × $26.000</span>
@@ -119,58 +140,64 @@ body{
     </div>
   </div>
 
-  <!-- Premios -->
+  <!-- ===== Premios ===== -->
   <div class="card" style="margin-top:12px;">
-    <h3>🏆Premios</h3>
+    <h3>🏆 Premios</h3>
     <ul class="prizes">
-      <li><b>1.º Premio:</b> 2 Entradas <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a> (campo centenario) Beneficios: Early entrance, Kit de merch exclusivo, Credencial conmemorativa. 12/12/25</li>
-      <li><b>2.º Premio:</b> Perfumes (combo)
-  Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
-      <li><b>3.º Premio:</b> Make up / Skin care (Kit A)</b><br>
-  Nivea toallita desmaquillante, Meraki hisopos, Conni pad limpieza, 
-  ACF Protector camuflaje, Serum humectante Vol 1° ACF, Máscara Maybelline Falsies Lash,
-  Corrector Maybelline Eraser, Dúo sombras Extrime, Carmex, Gel de cejas Extrime, 
-  Delineador de labios, Labial MAC, Paleta rostro Avon, Esponja Get the look.</li>
-      <li><b>4.º Premio:</b> Make up / Skin care (Kit B)</b><br>
-  Bálsamo desmaquillante TDM, ACF barra protectora, Clinique gel limpieza, Pad Coony, Hisopos Meraki, Carmex,
-  Gel de ceja L’Oréal, Máscara Maybelline, Corrector Maybelline, Sombra en barra Extrime, Delineador de labios Extrime,
-  Iluminador Avon, Gloss Extrime, Esponja Coony. </li>
-      <li><b>5.º Premio:</b> Hair & Body / Accesorios (Kit C)</b><br>
-  Pad Coony, Hisopos Meraki, Espátula Coony mascarilla, Mascara Maybelline, Sombra en barra, 
-  Gel delineador, Labial TDM, Mascara de Labios TDM, Protector térmico Primark,
-  Sellador Pantene, Dove Serum</li>
-<li><b>6.º Premio:</b> Combo Victoria’s Secret<br><span style="opacity:.85">Body Splash y Crema</span></li>
-
+      <li>
+        <b>1.º Premio:</b>
+        2 entradas para el show de
+        <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>
+        – sector <b>campo delantero</b>. Incluye <i>acceso temprano</i>, <i>kit de merch</i> y
+        <i>credencial conmemorativa</i>. <b>Fecha: 12/12/25</b>.
+      </li>
+      <li><b>2.º Premio:</b> Perfumes (combo) — Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
+      <li><b>3.º Premio:</b> Make up / Skin care (Kit A)<br>
+          Nivea toallita desmaquillante, Meraki hisopos, Conni pad limpieza, ACF Protector camuflaje,
+          Serum humectante Vol 1° ACF, Máscara Maybelline Falsies Lash, Corrector Maybelline Eraser,
+          Dúo sombras Extrime, Carmex, Gel de cejas Extrime, Delineador de labios, Labial MAC,
+          Paleta rostro Avon, Esponja Get the look.
+      </li>
+      <li><b>4.º Premio:</b> Make up / Skin care (Kit B)<br>
+          Bálsamo desmaquillante TDM, ACF barra protectora, Clinique gel limpieza, Pad Coony, Hisopos Meraki,
+          Carmex, Gel de ceja L’Oréal, Máscara Maybelline, Corrector Maybelline, Sombra en barra Extrime,
+          Delineador de labios Extrime, Iluminador Avon, Gloss Extrime, Esponja Coony.
+      </li>
+      <li><b>5.º Premio:</b> Hair & Body / Accesorios (Kit C)<br>
+          Pad Coony, Hisopos Meraki, Espátula Coony mascarilla, Máscara Maybelline, Sombra en barra,
+          Gel delineador, Labial TDM, Máscara de labios TDM, Protector térmico Primark,
+          Sellador Pantene, Dove Serum.
+      </li>
+      <li><b>6.º Premio:</b> Combo Victoria’s Secret <span style="opacity:.85">— Body Splash y Crema</span></li>
     </ul>
-    <small class="sub">*Modalidad y medios de pago seguimos abajo.</small>
+    <div class="note">*Modalidad y medios de pago seguimos abajo.</div>
   </div>
 
-  <!-- Selección -->
+  <!-- ===== Selección ===== -->
   <div class="card" style="margin-top:12px;">
     <div class="label dark">Selección de números</div>
 
-<div class="legend" style="margin-top:10px; color:#000;">
-  <span class="chip"></span> Disponible
-  <span class="chip sel"></span> Seleccionado
-  <span class="chip sold"></span> Reservado/PAGO
-</div>
-
+    <div class="legend" style="margin-top:10px">
+      <span class="chip"></span> Disponible
+      <span class="chip sel"></span> Seleccionado
+      <span class="chip sold"></span> Reservado/PAGO
+    </div>
 
     <div id="grid" class="grid"></div>
     <div id="summary" class="sum">Seleccionados: —</div>
 
     <div class="actions">
-      <button id="confirm" class="btn primary" disabled>Confirmar por WhatsApp</button>
+      <button id="confirm" class="btn" disabled>Confirmar por WhatsApp</button>
       <button id="clear" class="btn secondary">Limpiar selección de números</button>
     </div>
   </div>
 
-  <!-- Bases -->
+  <!-- ===== Bases (resumen) ===== -->
   <div class="card" style="margin-top:12px;">
-    <h3>📝 Bases & Condiciones</h3>
-   <!-- BASES & CONDICIONES (copiar/pegar tal cual en tu página) -->
-<div class="card bases" style="margin-top:12px;">
-    <li><b>Cómo participar:</b> elegís número(s) disponible(s) en la web y escribís por WhatsApp para confirmar.
+    <h3>📝 Bases & Condiciones </h3>
+    <ul class="prizes">
+      <li><b>Cantidad:</b> del <b>001</b> al <b>500</b>. Máximo <b>4</b> números por persona.</li>
+      <li><b>Cómo participar:</b> elegís número(s) disponible(s) en la web y escribís por WhatsApp para confirmar.
       El/los número(s) quedan en estado “Reservado” hasta acreditar el pago.</li>
   <li><b>Sorteo:</b> Por persona solo máximo 4 números</li>
     <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
@@ -183,13 +210,10 @@ body{
     <li><b>Plazo para reclamar:</b> <b>7 días corridos</b> desde la publicación. Pasado ese plazo, el premio se considera <b>desierto</b>.</li>
     <li><b>Devoluciones:</b> no aplican una vez acreditado el pago.</li>
     <li><b>Transparencia:</b> se conservarán capturas del extracto de ? y del procedimiento de asignación. La participación implica la <b>aceptación total</b> de estas bases.</li>
-    <li><b>Aviso legal:</b> esta promoción <b>no está patrocinada, avalada ni administrada</b> por Meta, Instagram o WhatsApp, ni asociada a ellos.</li>
-  </ul>
-</div>
-
+    </ul>
   </div>
 
-  <!-- Contacto & Medios de pago -->
+  <!-- ===== Contacto & Pago ===== -->
   <div class="card" style="margin-top:12px;">
     <h3>📲 Contacto & Medios de pago</h3>
 
@@ -201,224 +225,234 @@ body{
       <div><b>CVU</b> 0000003100061623575458</div>
       <div><b>Alias</b> cukirescatados</div>
     </div>
-    <div><a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a></div>
+
+    <div style="margin-top:8px"><b>Instagram</b>:
+      <a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a>
+    </div>
 
     <div class="qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F5491172361533" alt="QR WhatsApp">
-      <a class="btn" href="https://wa.me/5491172361533" target="_blank" rel="noopener">Abrir WhatsApp</a>
+      <!-- QR con mensaje automático -->
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwa.me%2F5491172361533%3Ftext%3DHola%2520%21%2520Quiero%2520participar%2520de%2520la%2520Rifa%2520Manada%2520Cuki.%2520%F0%9F%90%B6"
+        alt="QR WhatsApp">
+      <a class="btn" href="https://wa.me/5491172361533?text=Hola%20!%20Quiero%20participar%20de%20la%20Rifa%20Manada%20Cuki.%20🐶"
+         target="_blank" rel="noopener">Abrir WhatsApp</a>
     </div>
   </div>
 
+  <div class="footer-spacer"></div>
+  <div class="legal">
+    Aviso legal: esta promoción no está patrocinada, avalada ni administrada por Meta, Instagram o WhatsApp,
+    ni asociada a ellos. La participación implica la aceptación total de estas bases.
+  </div>
 </div>
 
 <script>
-  /* ========= CONFIG ========= */
-  const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec"; // ← pegá tu /exec
-  const WHATS      = "5491172361533";
-  const MAX_SELECT = 4;
-  const PRICES     = {1:10000, 2:18000, 3:26000};
-  const CVU        = "0000003100061623575458";
-  const ALIAS      = "cukirescatados";
+/* ========= CONFIG ========= */
+const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec";
+const WHATS      = "5491172361533";
+const MAX_SELECT = 4;
+const PRICES     = {1:10000, 2:18000, 3:26000};
+const CVU        = "0000003100061623575458";
+const ALIAS      = "cukirescatados";
+const MAX_N      = 500;
 
-  const MAX_N = 500; // 👈 500 números
-
-  const grid      = document.getElementById('grid');
-  const summary   = document.getElementById('summary');
-  const btnConfirm= document.getElementById('confirm');
-  const btnClear  = document.getElementById('clear');
-  const st        = document.getElementById('st');
-
-  let selected = new Set();
-  let taken    = new Set();
-  const inflight = new Set(); // números con petición en curso
-
-  const clientId = (() => {
-    const k = 'raffleClientId';
-    let v = localStorage.getItem(k);
-    if(!v){ v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()); localStorage.setItem(k,v); }
-    return v;
-  })();
-
-  const fmt   = n => n.toString().padStart(3,'0');
-  const pesos = n => n.toLocaleString('es-AR');
-
-  function bestPrice(k){
-    const tiers = Object.keys(PRICES).map(Number).sort((a,b)=>a-b);
-    const dp = Array(k+1).fill(Infinity); dp[0]=0;
-    for(let i=1;i<=k;i++){ for(const t of tiers){ if(t<=i) dp[i]=Math.min(dp[i],dp[i-t]+PRICES[t]); } }
-    return dp[k] || 0;
-  }
-
-  function renderGridBase(){
-    const frag = document.createDocumentFragment();
-    for(let i=1;i<=MAX_N;i++){
-      const d = document.createElement('div');
-      d.className = 'num';
-      d.textContent = fmt(i);
-      d.addEventListener('click', () => handleToggle(i, d));
-      frag.appendChild(d);
-    }
-    grid.innerHTML = '';
-    grid.appendChild(frag);
-  }
-
-  function applyTaken(){
-    for(let i=1;i<=MAX_N;i++){
-      const el = grid.children[i-1];
-      if(!el) continue;
-      if(taken.has(i)){
-        el.classList.add('sold');
-        el.replaceWith(el.cloneNode(true)); // quita listeners si ya está vendido
-      }else{
-        el.classList.remove('sold');
-      }
-    }
-  }
-
-  function repaintSelections(){
-    document.querySelectorAll('.num.sel').forEach(el=>el.classList.remove('sel'));
-    for(const n of selected){
-      const el = grid.children[n-1];
-      if(el && !el.classList.contains('sold')) el.classList.add('sel');
-    }
-  }
-
-  function updateSummary(){
-    const arr = [...selected].sort((a,b)=>a-b).map(fmt);
-    const k = arr.length, total = k ? bestPrice(k) : 0;
-    summary.textContent = k
-      ? `Seleccionados: ${arr.join(', ')} • Total a pagar: $${pesos(total)}`
-      : 'Seleccionados: —';
-    btnConfirm.disabled = (k===0);
-  }
+/* ========= Cache-buster v3 ========= */
 (function () {
-  // Cambiá este valor cada vez que publiques algo importante
-  const v = '2025-10-22-4';
+  const v = 'v5';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
-    // Recarga la página con ?v=… para evitar caché
     location.replace(u);
   }
 })();
 
+/* ========= DOM ========= */
+const grid       = document.getElementById('grid');
+const summary    = document.getElementById('summary');
+const btnConfirm = document.getElementById('confirm');
+const btnClear   = document.getElementById('clear');
+const st         = document.getElementById('st');
 
-  async function apiGet(params){
-    const q = new URLSearchParams(params).toString();
-    const url = API_BASE + (API_BASE.includes('?') ? '&' : '?') + q;
-    const r = await fetch(url, {cache:'no-store'});
-    if(!r.ok) throw new Error('GET '+r.status);
-    return r.json();
+let selected = new Set();
+let taken    = new Set();
+const inflight = new Set();
+
+const clientId = (() => {
+  const k = 'raffleClientId';
+  let v = localStorage.getItem(k);
+  if(!v){ v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()); localStorage.setItem(k,v); }
+  return v;
+})();
+
+const fmt   = n => n.toString().padStart(3,'0');
+const pesos = n => n.toLocaleString('es-AR');
+
+function bestPrice(k){
+  const tiers = Object.keys(PRICES).map(Number).sort((a,b)=>a-b);
+  const dp = Array(k+1).fill(Infinity); dp[0]=0;
+  for(let i=1;i<=k;i++){ for(const t of tiers){ if(t<=i) dp[i]=Math.min(dp[i],dp[i-t]+PRICES[t]); } }
+  return dp[k] || 0;
+}
+
+/* ===== Render inicial rápido ===== */
+function renderGridBase(){
+  const frag = document.createDocumentFragment();
+  for(let i=1;i<=MAX_N;i++){
+    const d = document.createElement('div');
+    d.className = 'num';
+    d.textContent = fmt(i);
+    d.addEventListener('click', () => handleToggle(i, d));
+    frag.appendChild(d);
   }
-  async function apiPost(params){
-    const r = await fetch(API_BASE, {
-      method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
-      body:new URLSearchParams(params)
-    });
-    if(!r.ok) throw new Error('POST '+r.status);
-    return r.json();
+  grid.innerHTML = '';
+  grid.appendChild(frag);
+}
+
+function applyTaken(){
+  for(let i=1;i<=MAX_N;i++){
+    const el = grid.children[i-1];
+    if(!el) continue;
+    if(taken.has(i)){
+      el.classList.add('sold');
+      el.replaceWith(el.cloneNode(true)); // quita listeners si está vendido
+    }else{
+      el.classList.remove('sold');
+    }
   }
+}
 
-  function handleToggle(n, el){
-    if (inflight.has(n) || el.classList.contains('sold')) return;
+function repaintSelections(){
+  document.querySelectorAll('.num.sel').forEach(el=>el.classList.remove('sel'));
+  for(const n of selected){
+    const el = grid.children[n-1];
+    if(el && !el.classList.contains('sold')) el.classList.add('sel');
+  }
+}
 
-    if (selected.has(n)){
-      selected.delete(n);
-      el.classList.remove('sel');
-      updateSummary();
-      inflight.add(n);
-      apiPost({action:'release', clientId, ns:String(n)})
-        .finally(()=>inflight.delete(n));
-      return;
-    }
+function updateSummary(){
+  const arr = [...selected].sort((a,b)=>a-b).map(fmt);
+  const k = arr.length, total = k ? bestPrice(k) : 0;
+  summary.textContent = k
+    ? `Seleccionados: ${arr.join(', ')} • Total a pagar: $${pesos(total)}`
+    : 'Seleccionados: —';
+  btnConfirm.disabled = (k===0);
+}
 
-    if (selected.size >= MAX_SELECT){
-      pulse(summary);
-      return;
-    }
+/* ===== API ===== */
+async function apiGet(params){
+  const q = new URLSearchParams(params).toString();
+  const url = API_BASE + (API_BASE.includes('?') ? '&' : '?') + q;
+  const r = await fetch(url, {cache:'no-store'});
+  if(!r.ok) throw new Error('GET '+r.status);
+  return r.json();
+}
+async function apiPost(params){
+  const r = await fetch(API_BASE, {
+    method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams(params)
+  });
+  if(!r.ok) throw new Error('POST '+r.status);
+  return r.json();
+}
 
-    selected.add(n);
-    el.classList.add('sel');
+/* ===== Interacción ===== */
+function handleToggle(n, el){
+  if (inflight.has(n) || el.classList.contains('sold')) return;
+
+  if (selected.has(n)){
+    selected.delete(n);
+    el.classList.remove('sel');
     updateSummary();
-
     inflight.add(n);
-    apiPost({action:'hold', clientId, ns:String(n)})
-      .then(res=>{
-        if (!(res.ok && res.ok.includes(n))){
-          selected.delete(n);
-          el.classList.remove('sel');
-          taken.add(n);
-          el.classList.add('sold');
-          updateSummary();
-          st.textContent = "Ese número se reservó recién. Elegí otro.";
-        }
-      })
-      .catch(()=>{ /* si falla red, el hold expira por TTL */ })
-      .finally(()=>inflight.delete(n));
+    apiPost({action:'release', clientId, ns:String(n)}).finally(()=>inflight.delete(n));
+    return;
   }
 
-  function pulse(el){
-    el.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],{duration:300});
+  if (selected.size >= MAX_SELECT){
+    pulse(summary);
+    return;
   }
 
-  function waLink(){
-    const arr = [...selected].sort((a,b)=>a-b).map(fmt);
-    const total = bestPrice(arr.length);
-    const msg = `Hola Mar! Quiero participar con el/los número(s): ${arr.join(', ')}.
-Total a pagar: $${pesos(total)}.
+  selected.add(n);
+  el.classList.add('sel');
+  updateSummary();
 
-CVU: ${CVU}
-Alias: ${ALIAS}
-Te envío el comprobante ahora.`;
-    return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
-  }
-
-  btnConfirm.addEventListener('click', async ()=>{
-    if(selected.size===0) return;
-    const ns = [...selected].join(',');
-    const link = waLink();
-
-    btnConfirm.disabled = true;
-    st.textContent = 'Confirmando…';
-
-    const fallback = setTimeout(()=>{ window.location.href = link; }, 1200);
-    try{
-      const res = await apiPost({action:'finalize', clientId, ns});
-      clearTimeout(fallback);
-      if(res.lost && res.lost.length){
-        for(const n of res.lost){ taken.add(Number(n)); selected.delete(Number(n)); }
-        applyTaken(); repaintSelections(); updateSummary();
-        st.textContent = 'Algunos números se agotaron. Elegí otros.';
-        btnConfirm.disabled = false;
-        return;
+  inflight.add(n);
+  apiPost({action:'hold', clientId, ns:String(n)})
+    .then(res=>{
+      if (!(res.ok && res.ok.includes(n))){
+        selected.delete(n);
+        el.classList.remove('sel');
+        taken.add(n);
+        el.classList.add('sold');
+        updateSummary();
+        st.textContent = "Ese número se reservó recién. Elegí otro.";
       }
-      window.location.href = link;
-    }catch(e){
-      window.location.href = link;
-    }
-  });
+    })
+    .catch(()=>{/* si falla red, el hold expira por TTL */})
+    .finally(()=>inflight.delete(n));
+}
 
-  btnClear.addEventListener('click', async ()=>{
-    const ns = [...selected].join(',');
-    selected.clear(); repaintSelections(); updateSummary();
-    if(ns){ try{ await apiPost({action:'release', clientId, ns}); }catch(_){ } }
-  });
+function pulse(el){
+  el.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],{duration:300});
+}
 
-  async function refreshState(){
-    try{
-      const res = await apiGet({action:'state'});
-      taken = new Set([...(res.sold||[]), ...(res.reserved||[])]);
+function waLink(){
+  const arr = [...selected].sort((a,b)=>a-b).map(fmt);
+  const total = bestPrice(arr.length);
+  const msg = `Hola! Quiero confirmar la Rifa Manada Cuki con estos números: ${arr.join(', ')}. Total: $${pesos(total)}. CVU ${CVU} / Alias ${ALIAS}.`;
+  return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
+}
+
+btnConfirm.addEventListener('click', async ()=>{
+  if(selected.size===0) return;
+  const ns   = [...selected].join(',');
+  const link = waLink();
+
+  btnConfirm.disabled = true;
+  st.textContent = 'Confirmando…';
+
+  const fallback = setTimeout(()=>{ window.location.href = link; }, 1200);
+  try{
+    const res = await apiPost({action:'finalize', clientId, ns});
+    clearTimeout(fallback);
+
+    if(res.lost && res.lost.length){
+      for(const n of res.lost){ taken.add(Number(n)); selected.delete(Number(n)); }
       applyTaken(); repaintSelections(); updateSummary();
-      st.textContent = 'Estado: conectado ✓';
-    }catch(e){
-      st.textContent = 'Estado: sin conexión';
+      st.textContent = 'Algunos números se agotaron. Elegí otros.';
+      btnConfirm.disabled = false;
+      return;
     }
+    window.location.href = link;
+  }catch(e){
+    window.location.href = link;
   }
+});
 
-  // Inicio
-  renderGridBase();
-  refreshState();
-  setInterval(refreshState, 15000);
+btnClear.addEventListener('click', async ()=>{
+  const ns = [...selected].join(',');
+  selected.clear(); repaintSelections(); updateSummary();
+  if(ns){ try{ await apiPost({action:'release', clientId, ns}); }catch(_){ } }
+});
+
+/* ===== Estado ===== */
+async function refreshState(){
+  try{
+    const res = await apiGet({action:'state'});
+    taken = new Set([...(res.sold||[]), ...(res.reserved||[])]);
+    applyTaken(); repaintSelections(); updateSummary();
+    st.textContent = 'Estado: conectado ✓';
+  }catch(e){
+    st.textContent = 'Estado: sin conexión';
+  }
+}
+
+/* ===== Init ===== */
+renderGridBase();
+refreshState();
+setInterval(refreshState, 15000);
 </script>
 </body>
 </html>
