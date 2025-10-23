@@ -6,96 +6,101 @@
 <meta name="robots" content="noindex,nofollow">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>🎟️ Rifa Solidaria – Manada Cuki  (varios premios)</title>
+<!-- En <head>, ANTES de <style> -->
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
+  === PALETA iOS PASTEL (solo reemplazá tu :root por este) === */
+/* === COLORES iOS PASTEL v3 – reemplaza tu :root y las reglas indicadas === */
 :root{
-  /* paleta verdes pasteles */
-  --bg1:#eafaf3;         /* fondo */
-  --card:#def3ea;        /* tarjetas */
-  --border:#bfe6d5;      /* bordes suaves */
-  --text:#0b2f23;        /* texto principal */
-  --muted:#2c5a49;       /* texto secundario */
-  --accent:#0f5c3b;      /* verde fuerte (selección/etiqueta) */
-  --accent-2:#2a7b5b;    /* hover */
-  --sold:#eef3f0;        /* reservado/pago */
+  /* Fondo y tarjetas */
+  --bg1:    #F2F2F7;  /* iOS grouped background */
+  --card:   #F7FFF9;  /* carta con leve tinte mint */
+  --border: #CFE8DA;
+
+  /* Texto */
+  --text:   #1C1C1E;  /* alto contraste iOS */
+  --muted:  #2F3A34;
+
+  /* Estados */
+  --sold:   #EFF4F1;
+
+  /* Acentos iOS */
+  --accent:   #34C759; /* systemGreen */
+  --accent-2: #2DBA55; /* hover */
 }
 
-*{box-sizing:border-box}
-html,body{margin:0}
+/* FONDO general – asegúrate de NO tener otra regla body anterior que lo pise */
 body{
+  margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  font-size:15px;               /* más chico */
-  background:linear-gradient(120deg,var(--bg1),#f4fff9);
+  background-color:#F2F2F7; /* fallback sólido */
+  background:linear-gradient(120deg,var(--bg1), #ECFFF6);
   color:var(--text);
 }
-.wrap{max-width:1100px;margin:24px auto;padding:14px}
 
-/* Tarjetas, más compactas */
+/* Tarjetas */
 .card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:14px;
-  padding:14px;
-  box-shadow:0 10px 30px rgba(15,92,59,.06);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
 }
 
-/* Encabezado */
-.hero{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-h1{font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 6px}
-.sub{color:var(--muted);font-weight:600}
-
-/* Leyenda (negro) */
-.legend{display:flex;gap:10px;align-items:center;color:#000;font-size:.9rem;margin-top:6px;flex-wrap:wrap}
-.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-.legend .chip.sel{background:#d5efe5;border-color:var(--accent)}
-.legend .chip.sold{background:var(--sold)}
-
-/* Etiqueta “Selección de números” destacada */
-.label{font-weight:900;margin:4px 0 8px}
+/* Etiqueta “Selección de números” en verde iOS */
+.label{font-weight:900;margin:4px 0 8px;}
 .label.dark{
-  background:var(--accent); color:#fff; padding:8px 12px;
-  border-radius:10px; display:inline-block; letter-spacing:.3px;
+  background:var(--accent);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:12px;
+  display:inline-block;
+  letter-spacing:.3px;
 }
 
-/* Grilla de números (10/8/6/5 col.) */
+/* Leyenda con mejor contraste */
+.legend{ color:#000; }
+.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
+.legend .chip.sel{ background:#E6F9ED; border-color:var(--accent); }
+.legend .chip.sold{ background:var(--sold); }
+
+/* Fuerza grilla en columnas (evita que salgan uno bajo otro) */
 .grid{
   display:grid !important;
-  grid-template-columns:repeat(10,minmax(0,1fr)) !important;
-  gap:10px !important; margin-top:8px;
+  grid-template-columns:repeat(10, minmax(0,1fr)) !important;
+  gap:12px !important;
+  margin-top:10px;
 }
-@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr) !important} }
-@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr) !important} }
-@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr) !important} }
+@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)!important;} }
+@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)!important;} }
+@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)!important;} }
 
-/* Fichas */
+/* Números */
 .num{
-  text-align:center; padding:10px 4px; border-radius:12px; width:auto !important;
-  border:1px solid var(--border); background:#fff; font-weight:800;
-  user-select:none; cursor:pointer; transition:.12s ease; box-shadow:0 2px 0 rgba(0,0,0,.04);
-  font-size:clamp(13px,2.6vw,16px); line-height:1; letter-spacing:.5px;
+  text-align:center;padding:12px 6px;border-radius:12px;border:1px solid var(--border);
+  background:#fff;font-weight:800;user-select:none;cursor:pointer;
+  transition:.12s ease;box-shadow:0 2px 0 rgba(0,0,0,.04);
+  font-size:clamp(13px,3.2vw,17px);line-height:1;letter-spacing:.5px;
 }
-.num:hover{transform:translateY(-1px);border-color:var(--accent-2)}
+.num:hover{ transform:translateY(-1px); border-color:var(--accent-2); }
+
+/* Seleccionado – verde iOS bien visible */
 .num.sel{
-  background:var(--accent); color:#fff; border-color:var(--accent);
-  box-shadow:0 0 0 2px rgba(15,92,59,.18) inset;
+  background:var(--accent);
+  border-color:var(--accent);
+  color:# fff;
+  box-shadow:0 0 0 2px rgba(52,199,89,.18) inset;
 }
-.num.sold{background:var(--sold);color:#8a8f8c;text-decoration:line-through;cursor:not-allowed}
 
-/* Resumen + botones más chicos */
-.sum{margin-top:6px;font-weight:700;color:var(--muted)}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-.btn{
-  all:unset; cursor:pointer; padding:8px 12px; border-radius:10px; font-weight:800;
-  border:1px solid var(--border); background:#fff; color:var(--accent);
-  box-shadow:0 1px 0 rgba(0,0,0,.04)
+/* Botón principal estilo iOS pastel */
+.btn.primary{
+  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, #E8FAEE,#D7F7E4);
+  color:#0F3D26; box-shadow:0 1px 0 rgba(0,0,0,.04);
+
 }
-.btn.primary{background:linear-gradient(180deg,#f6fffb,#e7fbf2);color:#154f3d}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.secondary{background:#fff;color:#194a39}
-
-/* Listas compactas */
-.prizes{padding-left:18px;margin:8px 0}
-.prizes li{margin:4px 0}
 </style>
 
 </head>
@@ -118,7 +123,7 @@ h1{font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 6px}
   <div class="card" style="margin-top:12px;">
     <h3>🏆Premios</h3>
     <ul class="prizes">
-      <li><b>1.º Premio:</b>2 Entradas <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a> (campo centenario) Beneficios: Early entrance, Kit de merch exclusivo, Credencial conmemorativa.</li>
+      <li><b>1.º Premio:</b> 2 Entradas <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a> (campo centenario) Beneficios: Early entrance, Kit de merch exclusivo, Credencial conmemorativa. 12/12/25</li>
       <li><b>2.º Premio:</b> Perfumes (combo)
   Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
       <li><b>3.º Premio:</b> Make up / Skin care (Kit A)</b><br>
@@ -199,7 +204,7 @@ h1{font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 6px}
     <div><a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a></div>
 
     <div class="qr">
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F5491133328404" alt="QR WhatsApp">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F5491172361533" alt="QR WhatsApp">
       <a class="btn" href="https://wa.me/5491172361533" target="_blank" rel="noopener">Abrir WhatsApp</a>
     </div>
   </div>
@@ -288,7 +293,7 @@ h1{font-size:clamp(1.2rem,2.6vw,1.6rem);margin:0 0 6px}
   }
 (function () {
   // Cambiá este valor cada vez que publiques algo importante
-  const v = '2025-10-22-3';
+  const v = '2025-10-22-4';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
