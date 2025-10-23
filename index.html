@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="es">
 <head>
+  
+<link rel="stylesheet" href="palette-indigo.css?v=v10">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
@@ -8,43 +11,35 @@
 
 <style>
   
+/* ===== PALETA ÍNDIGO/LILA (sin verde/rosa/blanco puro) ===== */
 :root{
-  /* Fondo duotono sin verde/rosa/blanco */
-  --bg1:#EEF2FF;   /* periwinkle muy suave (azul-violeta) */
+  --bg1:#EEF2FF;   /* periwinkle suave */
   --bg2:#F3E8FF;   /* lila brumoso */
-
-  /* Contenedores (sin blanco puro) */
-  --card:#F6F4FF;  /* lavanda pálido */
+  --card:#F6F4FF;  /* lavanda pálido (NO blanco) */
   --border:#DCD7F5;
 
-  /* Texto */
-  --ink:#131528;   /* azul noche */
+  --ink:#131528;   /* azul noche para texto */
   --muted:#494E7E; /* secundario frío */
 
-  /* Estados */
-  --chip:#E6E9FF;  /* chip “Seleccionado” */
+  --chip:#E6E9FF;  /* chip seleccionado leyenda */
   --sold:#ECEAF6;  /* reservado/pago */
 
-  /* Acentos (púrpuras) */
-  --accent:#4C1D95;   /* púrpura profundo (selección/etiqueta) */
+  --accent:#4C1D95;   /* púrpura profundo selección/etiqueta */
   --accent-2:#6D28D9; /* hover/borde activo */
 }
 
-
-
+/* ===== Base ===== */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  font-family: Arial, Helvetica, sans-serif; /* o la que uses */
+  font-family: Arial, Helvetica, sans-serif;   /* fuente básica */
   color:var(--ink);
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  background:linear-gradient(135deg,var(--bg1),var(--bg2)); /* ← ya NO blanco */
 }
-
-
 .wrap{max-width:1100px;margin:28px auto;padding:16px}
 
-
+/* Tarjetas */
 .card{
   background:var(--card);
   border:1px solid var(--border);
@@ -53,26 +48,29 @@ body{
   box-shadow:0 10px 28px rgba(76,29,149,.08);
 }
 
-
+/* Cabecera / precios */
 .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
 h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
 .sub{color:var(--muted);font-weight:600}
 .pills span{
   display:inline-block;border:1px solid var(--border);
-  background:#F6FBF8;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800
+  background:#EFF1FF;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800
 }
 
+/* Leyenda */
 .legend{display:flex;gap:12px;align-items:center;color:#000;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
 .legend .chip{width:14px;height:14px;border-radius:4px;background:#fff;border:1px solid var(--border);display:inline-block}
 .legend .chip.sel{background:var(--chip);border-color:var(--accent)}
 .legend .chip.sold{background:var(--sold)}
 
+/* Etiqueta fuerte */
 .label{font-weight:900;margin:4px 0 8px}
 .label.dark{
   background:var(--accent); color:#fff; padding:8px 14px; border-radius:12px;
   display:inline-block; letter-spacing:.3px;
 }
 
+/* Grilla de números (OJO: con punto .grid) */
 .grid{
   display:grid !important;
   grid-template-columns:repeat(10, minmax(0,1fr)) !important;
@@ -82,42 +80,47 @@ h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
 @media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)!important} }
 @media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)!important} }
 
+/* Números */
 .num{
-  background:#F5F7FF;        /* NO blanco: azul muy claro */
-  border:1px solid var(--border);
+  text-align:center; padding:12px 6px; border-radius:12px;
+  border:1px solid var(--border); background:#F2F3FF;  /* NO blanco: azul claro */
+  font-weight:800; user-select:none; cursor:pointer; transition:.12s ease;
+  box-shadow:0 2px 0 rgba(0,0,0,.04);
+  font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
 }
-.num:hover{ border-color:var(--accent-2); transform:translateY(-1px); }
+.num:hover{ transform:translateY(-1px); border-color:var(--accent-2); }
 .num.sel{
   background:var(--accent);
   border-color:var(--accent);
   color:#fff;
   box-shadow:0 0 0 2px rgba(109,40,217,.18) inset;
 }
-.num.sold{background:var(--sold);color:#8c8a86;text-decoration:line-through;cursor:not-allowed}
+.num.sold{background:var(--sold);color:#6b6a7a;text-decoration:line-through;cursor:not-allowed}
 
-.sum{margin-top:8px;font-weight:800;color:#2A3A31}
+/* Acciones */
+.sum{margin-top:8px;font-weight:800;color:#1f2140}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .btn{
   all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
   border:1px solid var(--border);
-  background:linear-gradient(180deg,#FAFEFB,#EEF7F3);
-  color:#21483B; box-shadow:0 1px 0 rgba(0,0,0,.04)
-}
-.btn{
-  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
-  border:1px solid var(--border);
   background:linear-gradient(180deg,#EEF1FF,#E9EDFF);
-  color:#1D234A; box-shadow:0 1px 0 rgba(0,0,0,.04);
+  color:#1D234A; box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.secondary{background:#fff}
+.status{font-size:.9rem;color:#1f2140}
 
+/* Listas / Pago / QR */
 .prizes li{margin:6px 0}
 .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
 .paygrid b{display:block}
 .qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff}
 
-.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#575D58}
+/* Notas y legal (si usás) */
+.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#51537a}
 .footer-spacer{height:12px}
+
 </style>
 
 </head>
@@ -255,7 +258,7 @@ const MAX_N      = 500;
 
 /* ========= Cache-buster v3 ========= */
 (function () {
-  const v = 'v9';
+  const v = 'v10';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
