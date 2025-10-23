@@ -2,20 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>🎟️ Rifa Solidaria – Manada Cuki  (varios premios)</title>
 
-  <!-- ✅ va aquí, NO dentro de <style> -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
 
  <style>
-
-/* === PALETA PASTEL NUEVA === */
 :root{
   /* rosa + variantes */
   --rose:   #f3b2be;   /* rosa principal (fondo) */
@@ -59,11 +53,11 @@ body{
 .num:hover{ transform:translateY(-1px); border-color:var(--sage); }
 
 /* número seleccionado: verde oscuro, bien notorio */
-.num.sel{
-  background:var(--accent-dark);
+   .num.sel{
+  background:#0f5c3b;  /* verde bien oscuro */
   color:#fff;
-  border-color:var(--accent-dark);
-  box-shadow:0 0 0 2px rgba(43,106,88,.15) inset;
+  border-color:#0f5c3b;
+  box-shadow:0 0 0 2px rgba(15,92,59,.15) inset;
 }
 
 /* botón con gradiente rosado */
@@ -74,11 +68,6 @@ body{
   color:#2a0f11; box-shadow:0 1px 0 rgba(0,0,0,.04);
 }
 
-/* Responsive columnas */
-@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
-@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} }
-@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} }
-
   /* Premios & Pago */
   .prizes li{margin:6px 0}
   .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
@@ -86,11 +75,24 @@ body{
   .qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
   .qr img{width:160px;height:160px;border-radius:12px;border:1px solid var(--border);background:#fff}
 
-  /* responsive */
-  @media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
-  @media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} .num{padding:10px 4px} }
-  @media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} .num{padding:10px 2px;font-size:clamp(12px,4vw,16px)} }
-</style>
+   grid{
+      display:grid !important;
+      grid-template-columns:repeat(10,minmax(0,1fr));
+      gap:12px;
+      margin-top:10px;
+    }
+    @media (max-width:900px){ #grid{grid-template-columns:repeat(8,1fr)} }
+    @media (max-width:640px){ #grid{grid-template-columns:repeat(6,1fr)} }
+    @media (max-width:420px){ #grid{grid-template-columns:repeat(5,1fr)} }
+
+    .num{
+      text-align:center; padding:12px 6px; border-radius:12px;
+      border:1px solid var(--border); background:#fff; font-weight:800;
+      user-select:none; cursor:pointer; transition:.12s ease;
+      box-shadow:0 2px 0 rgba(0,0,0,.04);
+      font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
+    }
+  </style>
 </head>
 <body>
 <div class="wrap">
@@ -279,6 +281,17 @@ body{
       : 'Seleccionados: —';
     btnConfirm.disabled = (k===0);
   }
+(function () {
+  // Cambiá este valor cada vez que publiques algo importante
+  const v = '2025-10-22-1';
+  if (!location.search.includes('v=')) {
+    const u = new URL(location.href);
+    u.searchParams.set('v', v);
+    // Recarga la página con ?v=… para evitar caché
+    location.replace(u);
+  }
+})();
+
 
   async function apiGet(params){
     const q = new URLSearchParams(params).toString();
