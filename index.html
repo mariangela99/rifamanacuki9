@@ -7,8 +7,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>🎟️ Rifa Solidaria – Manada Cuki  (varios premios)</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
-
  <style>
 :root{
   /* rosa + variantes */
@@ -91,6 +89,45 @@ body{
       user-select:none; cursor:pointer; transition:.12s ease;
       box-shadow:0 2px 0 rgba(0,0,0,.04);
       font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
+
+      /* === FIX: grilla en columnas + etiqueta destacada === */
+
+/* Colores (usa tu verde fuerte para la etiqueta) */
+:root{
+  --accent-strong:#0f5c3b;   /* mismo verde que tenés para el seleccionado */
+  --label-text:#ffffff;
+}
+
+/* Etiqueta “Selección de números” bien marcada */
+.label{font-weight:900;margin:4px 0 8px;}
+.label.dark{
+  background:var(--accent-strong);
+  color:var(--label-text);
+  padding:8px 14px;
+  border-radius:12px;
+  display:inline-block;
+  letter-spacing:.3px;
+}
+
+/* Fuerzo la grilla a múltiples columnas (por si otra regla la pisó) */
+.grid{
+  display:grid !important;
+  grid-template-columns:repeat(10, minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+.num{ width:auto !important; } /* evita que cada número ocupe todo el ancho */
+
+/* Responsive como antes */
+@media (max-width:900px){
+  .grid{ grid-template-columns:repeat(8, minmax(0,1fr)) !important; }
+}
+@media (max-width:640px){
+  .grid{ grid-template-columns:repeat(6, minmax(0,1fr)) !important; }
+}
+@media (max-width:420px){
+  .grid{ grid-template-columns:repeat(5, minmax(0,1fr)) !important; }
+}
+
     }
   </style>
 </head>
@@ -111,9 +148,9 @@ body{
 
   <!-- Premios -->
   <div class="card" style="margin-top:12px;">
-    <h3>🏆Beneficios: Premios</h3>
+    <h3>🏆Premios</h3>
     <ul class="prizes">
-      <li><b>1.º Premio:</b>2 Entradas <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>(campo centenario) Beneficios: Early entrance.Kit de merch exclusivo.Credencial conmemorativa.</li>
+      <li><b>1.º Premio:</b>2 Entradas <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a> (campo centenario) Beneficios: Early entrance, Kit de merch exclusivo, Credencial conmemorativa.</li>
       <li><b>2.º Premio:</b> Perfumes (combo)
   Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
       <li><b>3.º Premio:</b> Make up / Skin care (Kit A)</b><br>
@@ -166,7 +203,7 @@ body{
     <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
     <li><b>Sorteo público:</b> (punto a solucionar)</li>
       <ol>
-    <li><b>Premios:</b> se publican listados (Premio 1 → 1.º ganador, Premio 2 → 2.º ganador, …). No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
+    <li><b>Premios:</b> No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
     <li><b>Publicación y entrega:</b> se publican ganadores/as en Instagram y WhatsApp dentro de las <b>24 h</b>. Para validar, se solicita comprobante de pago y datos del/los número(s).
       <b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, El Solar Shopping</i> o envío a cargo del/la ganador/a (a coordinar).
     </li>
@@ -195,7 +232,7 @@ body{
 
     <div class="qr">
       <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fwa.me%2F5491133328404" alt="QR WhatsApp">
-      <a class="btn" href="https://wa.me/5491133328404" target="_blank" rel="noopener">Abrir WhatsApp</a>
+      <a class="btn" href="https://wa.me/5491172361533" target="_blank" rel="noopener">Abrir WhatsApp</a>
     </div>
   </div>
 
@@ -204,7 +241,7 @@ body{
 <script>
   /* ========= CONFIG ========= */
   const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec"; // ← pegá tu /exec
-  const WHATS      = "5491133328404";
+  const WHATS      = "5491172361533";
   const MAX_SELECT = 4;
   const PRICES     = {1:10000, 2:18000, 3:26000};
   const CVU        = "0000003100061623575458";
@@ -283,7 +320,7 @@ body{
   }
 (function () {
   // Cambiá este valor cada vez que publiques algo importante
-  const v = '2025-10-22-1';
+  const v = '2025-10-22-2';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
