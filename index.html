@@ -8,37 +8,48 @@
 
 <style>
 /* ===== Paleta pastel tipo iOS (verdes suaves) ===== */
-:root{
-  --bg1:#e8f5ef;          /* fondo degradado arriba (mint)  */
-  --bg2:#f3faf6;          /* fondo degradado abajo          */
-  --card:#f5fffb;         /* fondo de tarjetas (mint muy sutil) */
-  --border:#cfe6dd;       /* bordes suaves verdosos */
-  --ink:#0f1a14;          /* texto principal (casi negro verdoso) */
-  --muted:#3d594a;        /* texto secundario */
-  --accent:#186a4d;       /* verde oscuro para selección y etiqueta */
-  --accent-2:#218a63;     /* hover/borde activo */
-  --chip:#e9f6f0;         /* chip "Seleccionado" en leyenda */
-  --sold:#eef2f4;         /* reservado/pago */
+:root}
+  /* Fondo en duotono suave (mint + rosa cálido) */
+  --bg1:#F3F9F6;   /* mint cream */
+  --bg2:#FFF5F7;   /* rose mist */
+
+  /* Contenedores */
+  --card:#FDFCF7;  /* parchment cálido (no blanco puro) */
+  --border:#E7E2D9;/* borde tibio, sin gris frío */
+
+  /* Texto */
+  --ink:#212321;   /* casi negro con tinte oliva */
+  --muted:#5A5F57; /* secundario oliva-gris */
+
+  /* Estados */
+  --chip:#EAF6F1;  /* chip seleccionado en leyenda */
+  --sold:#EFEDE8;  /* reservado/pago cálido */
+
+  /* Acentos (verde verdigris) */
+  --accent:#2A7F62;   /* principal (selección/etiqueta) */
+  --accent-2:#3EA182; /* hover/borde activo */
 }
+
 
 /* ===== Base ===== */
 *{box-sizing:border-box}
 html,body{height:100%}
+  
 body{
   margin:0;
-  font-family: Arial, Helvetica, sans-serif;   /* 👈 fuente básica */
+  font-family: Arial, Helvetica, sans-serif; /* o la que ya tengas */
   color:var(--ink);
-  background:linear-gradient(180deg,var(--bg1),var(--bg2)); /* 👈 ya no blanco */
+  background:linear-gradient(135deg,var(--bg1), var(--bg2));
 }
 .wrap{max-width:1100px;margin:28px auto;padding:16px}
 
 /* ===== Tarjetas ===== */
 .card{
-  background:var(--card);                      /* 👈 tarjeta con mint suave */
+  background:var(--card);
   border:1px solid var(--border);
   border-radius:16px;
-  padding:18px;
-  box-shadow:0 10px 30px rgba(24,106,77,.06);
+  padding:16px;
+  box-shadow:0 10px 28px rgba(42,127,98,.08);
 }
 
 /* ===== Cabecera ===== */
@@ -51,10 +62,18 @@ h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
 }
 
 /* ===== Leyenda ===== */
-.legend{display:flex;gap:12px;align-items:center;color:#000;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
-.legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-.legend .chip.sel{background:var(--chip);border-color:var(--accent)}
-.legend .chip.sold{background:var(--sold)}
+.legend .chip{ background:#fff; border:1px solid var(--border); }
+.legend .chip.sel{ background:var(--chip); border-color:var(--accent); }
+.legend .chip.sold{ background:var(--sold); }
+
+.num.sel{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  box-shadow:0 0 0 2px rgba(42,127,98,.18) inset;
+}
+.num:hover{ border-color:var(--accent-2); transform:translateY(-1px); }
+
 
 /* ===== Etiqueta fuerte ===== */
 .label{font-weight:900;margin:4px 0 8px}
@@ -96,9 +115,12 @@ h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
   background:linear-gradient(180deg,#fbfffd,#ecf8f2);  /* botón verdoso claro */
   color:#0e2b1f; box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.secondary{background:#fff}
-.status{font-size:.9rem;color:#1e2e26}
+.btn{
+  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,#FAFEFB,#EEF7F3);
+  color:#21483B; box-shadow:0 1px 0 rgba(0,0,0,.04);
+}
 
 /* ===== Listas / Pago / QR ===== */
 .prizes li{margin:6px 0}
@@ -246,7 +268,7 @@ const MAX_N      = 500;
 
 /* ========= Cache-buster v3 ========= */
 (function () {
-  const v = 'v6';
+  const v = 'v7';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
