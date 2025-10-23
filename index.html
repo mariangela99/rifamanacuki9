@@ -7,16 +7,18 @@
 <title>🎟️ Rifa Solidaria – Manada Cuki (varios premios)</title>
 
 <style>
-/* ===== Paleta pastel tipo iOS ===== */
+/* ===== Paleta pastel tipo iOS (verdes suaves) ===== */
 :root{
-  --bg1:#f7f7fb;          /* fondo general */
-  --card:#ffffff;         /* tarjetas */
-  --border:#e8e8ef;       /* bordes suaves */
-  --ink:#0f0f0f;          /* texto */
-  --muted:#5c5c66;        /* texto secundario */
-  --accent:#0f5c3b;       /* verde oscuro (selección, etiqueta) */
-  --accent-2:#1c7a53;     /* hover */
-  --sold:#f1f1f4;         /* reservado/pago */
+  --bg1:#e8f5ef;          /* fondo degradado arriba (mint)  */
+  --bg2:#f3faf6;          /* fondo degradado abajo          */
+  --card:#f5fffb;         /* fondo de tarjetas (mint muy sutil) */
+  --border:#cfe6dd;       /* bordes suaves verdosos */
+  --ink:#0f1a14;          /* texto principal (casi negro verdoso) */
+  --muted:#3d594a;        /* texto secundario */
+  --accent:#186a4d;       /* verde oscuro para selección y etiqueta */
+  --accent-2:#218a63;     /* hover/borde activo */
+  --chip:#e9f6f0;         /* chip "Seleccionado" en leyenda */
+  --sold:#eef2f4;         /* reservado/pago */
 }
 
 /* ===== Base ===== */
@@ -24,104 +26,89 @@
 html,body{height:100%}
 body{
   margin:0;
-  font-family:"Courier New", Courier, monospace; /* 👈 Fuente global */
+  font-family: Arial, Helvetica, sans-serif;   /* 👈 fuente básica */
   color:var(--ink);
-  background:linear-gradient(180deg,#fdfdff, var(--bg1));
+  background:linear-gradient(180deg,var(--bg1),var(--bg2)); /* 👈 ya no blanco */
 }
 .wrap{max-width:1100px;margin:28px auto;padding:16px}
 
 /* ===== Tarjetas ===== */
 .card{
-  background:var(--card);
+  background:var(--card);                      /* 👈 tarjeta con mint suave */
   border:1px solid var(--border);
   border-radius:16px;
   padding:18px;
-  box-shadow:0 10px 30px rgba(15,92,59,.06);
+  box-shadow:0 10px 30px rgba(24,106,77,.06);
 }
 
 /* ===== Cabecera ===== */
 .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
-h1{margin:0 0 8px 0;font-size:clamp(20px,3.2vw,30px)}
+h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
 .sub{color:var(--muted);font-weight:600}
-.pills span{display:inline-block;border:1px solid var(--border);background:#fafafa;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800}
+.pills span{
+  display:inline-block;border:1px solid var(--border);
+  background:#eaf7f1;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800
+}
 
 /* ===== Leyenda ===== */
 .legend{display:flex;gap:12px;align-items:center;color:#000;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
 .legend .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
-.legend .chip.sel{background:#e9f6f0;border-color:var(--accent)}
+.legend .chip.sel{background:var(--chip);border-color:var(--accent)}
 .legend .chip.sold{background:var(--sold)}
 
 /* ===== Etiqueta fuerte ===== */
 .label{font-weight:900;margin:4px 0 8px}
 .label.dark{
-  background:var(--accent);
-  color:#fff;
-  padding:8px 14px;
-  border-radius:12px;
-  display:inline-block;
-  letter-spacing:.3px;
+  background:var(--accent); color:#fff; padding:8px 14px; border-radius:12px;
+  display:inline-block; letter-spacing:.3px;
 }
 
 /* ===== Grilla de números ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(10, minmax(0,1fr));
-  gap:12px;
-  margin-top:10px;
+  gap:12px; margin-top:10px;
 }
 @media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
 @media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} }
 @media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} }
 
 .num{
-  text-align:center;
-  padding:12px 6px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#fff;
-  font-weight:800;
-  user-select:none;
-  cursor:pointer;
-  transition:.12s ease;
+  text-align:center; padding:12px 6px; border-radius:12px;
+  border:1px solid var(--border); background:#ffffff;  /* botones blancos sobre tarjeta mint */
+  font-weight:800; user-select:none; cursor:pointer; transition:.12s ease;
   box-shadow:0 2px 0 rgba(0,0,0,.04);
-  font-size:clamp(14px,3.2vw,18px);
-  line-height:1;
-  letter-spacing:.5px;
+  font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
 }
 .num:hover{transform:translateY(-1px);border-color:var(--accent-2)}
 .num.sel{
-  background:var(--accent);
-  color:#fff;
-  border-color:var(--accent);
-  box-shadow:0 0 0 2px rgba(15,92,59,.15) inset;
+  background:var(--accent); color:#fff; border-color:var(--accent);
+  box-shadow:0 0 0 2px rgba(24,106,77,.15) inset;
 }
-.num.sold{background:var(--sold);color:#9a9a9a;text-decoration:line-through;cursor:not-allowed}
+.num.sold{background:var(--sold);color:#8a8f94;text-decoration:line-through;cursor:not-allowed}
 
 /* ===== Acciones ===== */
-.sum{margin-top:8px;font-weight:800;color:#2a0e11}
+.sum{margin-top:8px;font-weight:800;color:#1e2e26}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .btn{
   all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
-  border:1px solid var(--border);background:linear-gradient(180deg,#f9fafb,#f1f5f9);color:#17202a;
-  box-shadow:0 1px 0 rgba(0,0,0,.04)
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,#fbfffd,#ecf8f2);  /* botón verdoso claro */
+  color:#0e2b1f; box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btn.secondary{background:#fff}
-.status{font-size:.9rem;color:#2a0e11}
+.status{font-size:.9rem;color:#1e2e26}
 
-/* ===== Listas ===== */
+/* ===== Listas / Pago / QR ===== */
 .prizes li{margin:6px 0}
-
-/* ===== Pago & QR ===== */
 .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
 .paygrid b{display:block}
 .qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff} /* 👈 más chico */
+.qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff}
 
-/* ===== Notas y Legal (misma letra y tamaño) ===== */
-.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#555}
-
-/* separador al final para el aviso legal */
+/* Notas y legal (si los usás) */
+.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#4d5a53}
 .footer-spacer{height:12px}
 </style>
 </head>
@@ -259,7 +246,7 @@ const MAX_N      = 500;
 
 /* ========= Cache-buster v3 ========= */
 (function () {
-  const v = 'v5';
+  const v = 'v6';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
