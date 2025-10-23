@@ -7,132 +7,115 @@
 <title>🎟️ Rifa Solidaria – Manada Cuki (varios premios)</title>
 
 <style>
-/* ===== Paleta pastel tipo iOS (verdes suaves) ===== */
-:root}
-  /* Fondo en duotono suave (mint + rosa cálido) */
+:root{
+  
   --bg1:#F3F9F6;   /* mint cream */
   --bg2:#FFF5F7;   /* rose mist */
 
-  /* Contenedores */
+  
   --card:#FDFCF7;  /* parchment cálido (no blanco puro) */
   --border:#E7E2D9;/* borde tibio, sin gris frío */
 
-  /* Texto */
+  
   --ink:#212321;   /* casi negro con tinte oliva */
   --muted:#5A5F57; /* secundario oliva-gris */
 
-  /* Estados */
+
   --chip:#EAF6F1;  /* chip seleccionado en leyenda */
   --sold:#EFEDE8;  /* reservado/pago cálido */
 
-  /* Acentos (verde verdigris) */
+
   --accent:#2A7F62;   /* principal (selección/etiqueta) */
   --accent-2:#3EA182; /* hover/borde activo */
 }
 
 
-/* ===== Base ===== */
 *{box-sizing:border-box}
 html,body{height:100%}
-  
 body{
   margin:0;
-  font-family: Arial, Helvetica, sans-serif; /* o la que ya tengas */
+  font-family: Arial, Helvetica, sans-serif;   /* fuente básica */
   color:var(--ink);
-  background:linear-gradient(135deg,var(--bg1), var(--bg2));
+  background:linear-gradient(135deg,var(--bg1), var(--bg2)); /* ← ya no blanco */
 }
+
 .wrap{max-width:1100px;margin:28px auto;padding:16px}
 
-/* ===== Tarjetas ===== */
+
 .card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:16px;
-  padding:16px;
+  padding:18px;
   box-shadow:0 10px 28px rgba(42,127,98,.08);
 }
 
-/* ===== Cabecera ===== */
 .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
 h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
 .sub{color:var(--muted);font-weight:600}
 .pills span{
   display:inline-block;border:1px solid var(--border);
-  background:#eaf7f1;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800
+  background:#F6FBF8;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800
 }
 
-/* ===== Leyenda ===== */
-.legend .chip{ background:#fff; border:1px solid var(--border); }
-.legend .chip.sel{ background:var(--chip); border-color:var(--accent); }
-.legend .chip.sold{ background:var(--sold); }
+.legend{display:flex;gap:12px;align-items:center;color:#000;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
+.legend .chip{width:14px;height:14px;border-radius:4px;background:#fff;border:1px solid var(--border);display:inline-block}
+.legend .chip.sel{background:var(--chip);border-color:var(--accent)}
+.legend .chip.sold{background:var(--sold)}
 
-.num.sel{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-  box-shadow:0 0 0 2px rgba(42,127,98,.18) inset;
-}
-.num:hover{ border-color:var(--accent-2); transform:translateY(-1px); }
-
-
-/* ===== Etiqueta fuerte ===== */
 .label{font-weight:900;margin:4px 0 8px}
 .label.dark{
   background:var(--accent); color:#fff; padding:8px 14px; border-radius:12px;
   display:inline-block; letter-spacing:.3px;
 }
 
-/* ===== Grilla de números ===== */
 .grid{
-  display:grid;
-  grid-template-columns:repeat(10, minmax(0,1fr));
-  gap:12px; margin-top:10px;
+  display:grid !important;
+  grid-template-columns:repeat(10, minmax(0,1fr)) !important;
+  gap:12px !important; margin-top:10px;
 }
-@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
-@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} }
-@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} }
+@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)!important} }
+@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)!important} }
+@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)!important} }
 
 .num{
   text-align:center; padding:12px 6px; border-radius:12px;
-  border:1px solid var(--border); background:#ffffff;  /* botones blancos sobre tarjeta mint */
-  font-weight:800; user-select:none; cursor:pointer; transition:.12s ease;
+  border:1px solid var(--border); background:#fff; font-weight:800;
+  user-select:none; cursor:pointer; transition:.12s ease;
   box-shadow:0 2px 0 rgba(0,0,0,.04);
   font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
 }
-.num:hover{transform:translateY(-1px);border-color:var(--accent-2)}
+.num:hover{ transform:translateY(-1px); border-color:var(--accent-2); }
 .num.sel{
-  background:var(--accent); color:#fff; border-color:var(--accent);
-  box-shadow:0 0 0 2px rgba(24,106,77,.15) inset;
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  box-shadow:0 0 0 2px rgba(42,127,98,.18) inset;
 }
-.num.sold{background:var(--sold);color:#8a8f94;text-decoration:line-through;cursor:not-allowed}
+.num.sold{background:var(--sold);color:#8c8a86;text-decoration:line-through;cursor:not-allowed}
 
-/* ===== Acciones ===== */
-.sum{margin-top:8px;font-weight:800;color:#1e2e26}
+.sum{margin-top:8px;font-weight:800;color:#2A3A31}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.btn{
-  all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
-  border:1px solid var(--border);
-  background:linear-gradient(180deg,#fbfffd,#ecf8f2);  /* botón verdoso claro */
-  color:#0e2b1f; box-shadow:0 1px 0 rgba(0,0,0,.04)
-}
 .btn{
   all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
   border:1px solid var(--border);
   background:linear-gradient(180deg,#FAFEFB,#EEF7F3);
-  color:#21483B; box-shadow:0 1px 0 rgba(0,0,0,.04);
+  color:#21483B; box-shadow:0 1px 0 rgba(0,0,0,.04)
 }
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.secondary{background:#fff}
+.status{font-size:.9rem;color:#2A3A31}
 
-/* ===== Listas / Pago / QR ===== */
 .prizes li{margin:6px 0}
 .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
 .paygrid b{display:block}
 .qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff}
 
-/* Notas y legal (si los usás) */
-.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#4d5a53}
+.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#575D58}
 .footer-spacer{height:12px}
 </style>
+
 </head>
 <body>
 <div class="wrap">
@@ -268,7 +251,7 @@ const MAX_N      = 500;
 
 /* ========= Cache-buster v3 ========= */
 (function () {
-  const v = 'v7';
+  const v = 'v8';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
