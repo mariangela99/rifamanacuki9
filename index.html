@@ -5,14 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>🎟️ Rifa Solidaria – Manada Cuki (varios premios)</title>
-
-  <!-- Carga tu CSS externo (asegúrate que el archivo existe en la raíz del repo) -->
-  <link rel="stylesheet" href="./palette-indigo.css?v=v13">
+  <link rel="stylesheet" href="./palette-indigo.css?v=v14">
 </head>
-
-
 <style>
-  /* ===== Paleta Índigo/Lila (sin verde/rosa/blanco base) ===== */
   :root{
     --bg1:#EEF2FF;  /* periwinkle suave */
     --bg2:#F3E8FF;  /* lila brumoso */
@@ -125,8 +120,6 @@
   /* clicks rápidos en móviles */
   .num,.btn{ touch-action: manipulation; }
 </style>
-
-
 </head>
 <body>
 <div class="wrap">
@@ -262,7 +255,7 @@ const MAX_N      = 500;
 
 /* ========= Cache-buster v3 ========= */
 (function () {
-  const v = 'v13';
+  const v = 'v14';
   if (!location.search.includes('v=')) {
     const u = new URL(location.href);
     u.searchParams.set('v', v);
