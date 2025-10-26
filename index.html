@@ -132,6 +132,26 @@
 
     /* Tacto más rápido en móviles */
     .num,.btn{ touch-action: manipulation; }
+/* === Píldoras de precio en verde más oscuro === */
+:root{
+  --pill:#15803d;   /* verde oscuro principal */
+  --pill-2:#166534; /* borde/hover aún más oscuro */
+  --pill-text:#ffffff;
+}
+
+.pills span{
+  background:var(--pill);
+  color:var(--pill-text);
+  border-color:var(--pill-2);
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.08);
+  transition:transform .12s ease, filter .12s ease;
+}
+
+.pills span:hover{
+  filter:brightness(.95);
+  transform:translateY(-1px);
+}
+    
   </style>
 </head>
 <body>
@@ -246,14 +266,14 @@
   const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec";
   const WHATS      = "5491172361533";
   const MAX_SELECT = 4;
-  const PRICES     = {1:10000, 2:18000, 3:26000};
+  const PRICES     = {1:15000, 2:26000, 3:39000};
   const CVU        = "0000003100061623575458";
   const ALIAS      = "cukirescatados";
   const MAX_N      = 500;
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-green-2';
+    const v = 'v-green-3';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
@@ -451,7 +471,4 @@
 </body>
 </html>
 
-/* Notas y legal */
-.note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#575D58}
-.footer-spacer{height:12px}
 </style>
