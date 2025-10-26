@@ -1,117 +1,455 @@
-<style>
-/* ========== PALETA ÚNICA "Verdigris Tea v8" (anti-blanco) ========== */
-:root{
-  /* Fondo en duotono suave */
-  --bg1:#F3F9F6;   /* mint cream */
-  --bg2:#FFF5F7;   /* rose mist */
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>🎟️ Rifa Solidaria – Manada Cuki (varios premios)</title>
 
-  /* Contenedores */
-  --card:#FDFCF7;  /* parchment cálido (no blanco puro) */
-  --border:#E7E2D9;/* borde tibio, sin gris frío */
+  <!-- Favicon huellita (data URI, no requiere archivo) -->
+  <link rel="icon" type="image/svg+xml"
+        href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><text y="50%" x="50%" dominant-baseline="middle" text-anchor="middle" font-size="50">🐾</text></svg>'>
 
-  /* Texto */
-  --ink:#212321;   /* casi negro con tinte oliva */
-  --muted:#5A5F57; /* secundario oliva-gris */
+  <style>
+    :root{
+      /* Paleta VERDE pastel (original) */
+      --bg1:#f0fdf4;   /* verde muy claro */
+      --bg2:#dcfce7;   /* verde claro */
+      --card:#f7fef9;  /* carta suave */
+      --border:#bbf7d0;
 
-  /* Estados */
-  --chip:#EAF6F1;  /* chip seleccionado en leyenda */
-  --sold:#EFEDE8;  /* reservado/pago cálido */
+      --text:#14532d;    /* verde oscuro para texto */
+      --muted:#166534;   /* secundario */
+      --accent:#22c55e;  /* acento */
+      --accent2:#4ade80; /* hover/acento claro */
 
-  /* Acentos (verde verdigris) */
-  --accent:#2A7F62;   /* principal (selección/etiqueta) */
-  --accent-2:#3EA182; /* hover/borde activo */
-}
+      --chip:#dcfce7;  /* chip disponible */
+      --sold:#e5f5ec;  /* reservado/pago */
+      --sel:#d1fae5;   /* seleccionado suave */
+      --dark:#14532d;  /* énfasis fuerte */
+    }
 
-/* ===== Base ===== */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Arial, Helvetica, sans-serif;   /* fuente básica */
-  color:var(--ink);
-  background:linear-gradient(135deg,var(--bg1), var(--bg2)); /* ← ya no blanco */
-}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--text);
+    }
+    .wrap{max-width:1100px;margin:28px auto;padding:16px}
 
-/* Layout */
-.wrap{max-width:1100px;margin:28px auto;padding:16px}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 10px 30px rgba(20,83,45,.08);
+    }
 
-/* Tarjetas */
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 10px 28px rgba(42,127,98,.08);
-}
+    .hero{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    h1{margin:0 0 6px;font-size:clamp(1.5rem,3vw,2.1rem)}
+    .sub{color:var(--muted);font-weight:600}
 
-/* Cabecera / precios */
-.hero{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
-h1{margin:0 0 8px;font-size:clamp(20px,3.2vw,30px)}
-.sub{color:var(--muted);font-weight:600}
-.pills span{
-  display:inline-block;border:1px solid var(--border);
-  background:#F6FBF8;border-radius:999px;padding:6px 10px;margin-right:8px;font-weight:800
-}
+    .pills span{
+      display:inline-block;border:1px solid var(--border);color:var(--accent);
+      background:var(--chip);border-radius:999px;padding:6px 12px;margin-right:8px;font-weight:800
+    }
 
-/* Leyenda */
-.legend{display:flex;gap:12px;align-items:center;color:#000;font-size:.95rem;margin-top:8px;flex-wrap:wrap}
-.legend .chip{width:14px;height:14px;border-radius:4px;background:#fff;border:1px solid var(--border);display:inline-block}
-.legend .chip.sel{background:var(--chip);border-color:var(--accent)}
-.legend .chip.sold{background:var(--sold)}
+    .status{font-size:.9rem;color:var(--muted)}
 
-/* Etiqueta fuerte */
-.label{font-weight:900;margin:4px 0 8px}
-.label.dark{
-  background:var(--accent); color:#fff; padding:8px 14px; border-radius:12px;
-  display:inline-block; letter-spacing:.3px;
-}
+    .label{display:inline-block;padding:8px 12px;border-radius:10px;font-weight:800}
+    .label.dark{background:var(--dark);color:#fff}
 
-/* Grilla de números (OJO: con punto .grid) */
-.grid{
-  display:grid !important;
-  grid-template-columns:repeat(10, minmax(0,1fr)) !important;
-  gap:12px !important; margin-top:10px;
-}
-@media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)!important} }
-@media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)!important} }
-@media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)!important} }
+    /* ===== Números ===== */
+    .grid{display:grid;grid-template-columns:repeat(10,1fr);gap:12px;margin-top:10px}
+    .num{
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 6px;
+      text-align:center;
+      font-weight:800;
+      cursor:pointer; user-select:none;
+      box-shadow:0 2px 0 rgba(0,0,0,.04);
+      transition:.12s ease;
+      font-size:clamp(14px,3.7vw,18px);
+      line-height:1; letter-spacing:.5px;
+    }
+    .num:hover{transform:translateY(-1px);border-color:var(--accent2)}
+    .num.sel{
+      background:var(--dark);
+      color:#fff;
+      border-color:var(--dark);
+      box-shadow:0 0 0 2px rgba(20,83,45,.18) inset;
+    }
+    .num:active{transform:scale(.98)}
+    .num:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+    .num.sold{background:var(--sold);color:#6b7280;text-decoration:line-through;cursor:not-allowed}
 
-/* Números */
-.num{
-  text-align:center; padding:12px 6px; border-radius:12px;
-  border:1px solid var(--border); background:#fff; font-weight:800;
-  user-select:none; cursor:pointer; transition:.12s ease;
-  box-shadow:0 2px 0 rgba(0,0,0,.04);
-  font-size:clamp(14px,3.2vw,18px); line-height:1; letter-spacing:.5px;
-}
-.num:hover{ transform:translateY(-1px); border-color:var(--accent-2); }
-.num.sel{
-  background:var(--accent);
-  border-color:var(--accent);
-  color:#fff;
-  box-shadow:0 0 0 2px rgba(42,127,98,.18) inset;
-}
-.num.sold{background:var(--sold);color:#8c8a86;text-decoration:line-through;cursor:not-allowed}
+    .legend{display:flex;gap:12px;align-items:center;color:var(--muted);flex-wrap:wrap;margin-top:8px}
+    .chip{width:14px;height:14px;border-radius:4px;display:inline-block;background:#fff;border:1px solid var(--border)}
+    .chip.sel{background:var(--sel);border-color:var(--accent)}
+    .chip.sold{background:var(--sold)}
+    .sum{margin-top:8px;font-weight:800;color:#0f2b1e}
 
-/* Acciones */
-.sum{margin-top:8px;font-weight:800;color:#2A3A31}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.btn{
-  all:unset; cursor:pointer; padding:10px 14px; border-radius:10px; font-weight:800;
-  border:1px solid var(--border);
-  background:linear-gradient(180deg,#FAFEFB,#EEF7F3);
-  color:#21483B; box-shadow:0 1px 0 rgba(0,0,0,.04)
-}
-.btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.secondary{background:#fff}
-.status{font-size:.9rem;color:#2A3A31}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{
+      all:unset;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:800;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#ecfdf5,#dcfce7);
+      color:#0f2b1e; box-shadow:0 1px 0 rgba(0,0,0,.04); text-align:center
+    }
+    .btn.secondary{background:#fff}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    /* Botón principal igual al color fuerte */
+    #confirm.btn{ background:var(--dark); color:#fff; border-color:var(--dark) }
+    #confirm.btn:hover:not(:disabled){ filter:brightness(.95); transform:translateY(-1px) }
+    #confirm.btn:disabled{
+      background:#e4f2e9; color:#5f7a6a; border-color:#e4f2e9; opacity:.95;
+    }
 
-/* Listas / Pago / QR */
-.prizes li{margin:6px 0}
-.paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
-.paygrid b{display:block}
-.qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
-.qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff}
+    /* Footer pago & QR */
+    .paygrid{display:grid;grid-template-columns:1fr;gap:6px;margin:10px 0 0}
+    .paygrid b{display:block;color:var(--text)}
+    .qr{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+    .qr img{width:120px;height:120px;border-radius:12px;border:1px solid var(--border);background:#fff}
+
+    /* Aviso legal (al final, letra muy chica Tahoma) */
+    .legal{
+      margin:24px auto 8px;
+      max-width:1100px;
+      color:#0f2b1e;
+      font-family:Tahoma, Geneva, Verdana, sans-serif;
+      font-size:11px;
+      opacity:.85;
+      padding:0 16px;
+    }
+
+    /* Responsive columnas */
+    @media (max-width:900px){ .grid{grid-template-columns:repeat(8,1fr)} }
+    @media (max-width:640px){ .grid{grid-template-columns:repeat(6,1fr)} .num{padding:12px 4px} }
+    @media (max-width:420px){ .grid{grid-template-columns:repeat(5,1fr)} .num{padding:12px 2px;font-size:clamp(13px,4vw,17px)} }
+
+    /* Tacto más rápido en móviles */
+    .num,.btn{ touch-action: manipulation; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== Encabezado ===== -->
+  <div class="card hero">
+    <div>
+      <h1>🎟️ Rifa Solidaria – Manada Cuki (Varios Premios)</h1>
+      <div class="sub">Elegí hasta 4 números y escribime por WhatsApp 💬</div>
+      <div class="pills" style="margin-top:6px">
+        <span>$10.000 c/u</span><span>2 × $18.000</span><span>3 × $26.000</span>
+      </div>
+      <div id="st" class="status">Estado: conectando…</div>
+    </div>
+  </div>
+
+  <!-- ===== Premios ===== -->
+  <div class="card" style="margin-top:12px;">
+    <h3>🏆 Premios</h3>
+    <ul class="prizes" style="margin:0 0 6px 16px; padding:0 0 0 4px">
+      <li>
+        <b>1.º Premio:</b>
+        2 entradas para el show de
+        <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>
+        – <b>campo delantero</b>, con <i>acceso temprano</i>, <i>kit de merch</i> y
+        <i>credencial conmemorativa</i>. <b>12/12/25</b>.
+      </li>
+      <li><b>2.º Premio:</b> Perfumes (combo): Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
+      <li><b>3.º Premio:</b> Make up / Skin care (Kit A): Nivea toallita, hisopos Meraki, pad Conni, ACF camuflaje,
+          Serum humectante ACF, Máscara Maybelline Falsies Lash, Corrector Eraser, Dúo sombras Extrime, Carmex,
+          Gel de cejas Extrime, Delineador de labios, Labial MAC, Paleta rostro Avon, Esponja Get the look.</li>
+      <li><b>4.º Premio:</b> Make up / Skin care (Kit B): Bálsamo TDM, ACF barra protectora, Clinique gel,
+          Pad Coony, Hisopos Meraki, Carmex, Gel de ceja L’Oréal, Máscara & Corrector Maybelline,
+          Sombra barra/Delineador labios Extrime, Iluminador Avon, Gloss Extrime, Esponja Coony.</li>
+      <li><b>5.º Premio:</b> Hair & Body / Accesorios (Kit C): Pad Coony, Hisopos Meraki, Espátula Coony,
+          Máscara Maybelline, Sombra en barra, Gel delineador, Labial TDM, Máscara de labios TDM,
+          Protector térmico Primark, Sellador Pantene, Dove Serum.</li>
+      <li><b>6.º Premio:</b> Combo Victoria’s Secret — <span style="opacity:.85">Body Splash y Crema</span></li>
+    </ul>
+    <div class="sub" style="margin-top:4px">*Modalidad y medios de pago están al final.</div>
+  </div>
+
+  <!-- ===== Selección ===== -->
+  <div class="card" style="margin-top:12px;">
+    <div class="label dark">Selección de números</div>
+
+    <div class="legend" style="margin-top:10px">
+      <span class="chip"></span> Disponible
+      <span class="chip sel"></span> Seleccionado
+      <span class="chip sold"></span> Reservado/PAGO
+    </div>
+
+    <div id="grid" class="grid"></div>
+    <div id="summary" class="sum">Seleccionados: —</div>
+
+    <div class="actions">
+      <button id="confirm" class="btn" disabled>Confirmar por WhatsApp</button>
+      <button id="clear" class="btn secondary">Limpiar selección de números</button>
+    </div>
+  </div>
+
+  <!-- ===== Bases (resumen) ===== -->
+  <div class="card" style="margin-top:12px;">
+    <h3>📝 Bases & Condiciones </h3>
+    <ul style="margin:0 0 0 16px; padding:0 0 0 4px">
+      <li><b>Cantidad:</b> del <b>001</b> al <b>500</b>. Máximo <b>4</b> números por persona.</li>
+      <li><b>Cómo participar:</b> elegís número(s) disponible(s) en la web y confirmás por WhatsApp. Los números quedan “Reservado” hasta acreditar el pago.</li>
+      <li><b>Reserva automática:</b> <b>15 minutos</b>. Vencido el plazo sin pago, vuelven a estar disponibles.</li>
+      <li><b>Sorteo público:</b> según Quiniela Nocturna CABA de la fecha que se comunique.</li>
+      <li><b>Premios:</b> no son canjeables por dinero. Ante falta de stock, podrá reemplazarse por otro de igual o mayor valor.</li>
+      <li><b>Publicación/entrega:</b> ganadores/as en IG y WhatsApp dentro de 24 h. Entrega en Palmas del Pilar, TOM, El Solar o envío a cargo del/la ganador/a.</li>
+    </ul>
+  </div>
+
+  <!-- ===== Contacto & Pago ===== -->
+  <div class="card" style="margin-top:12px;">
+    <h3>📲 Contacto & Medios de pago</h3>
+
+    <div class="paygrid">
+      <div><b>Medio de pago único</b> Transferencia</div>
+      <div><b>Cuenta</b> de Mercado Pago</div>
+      <div><b>Titular</b> Francesca Lisanti</div>
+      <div><b>CUIT/CUIL</b> 27-40388809-0</div>
+      <div><b>CVU</b> 0000003100061623575458</div>
+      <div><b>Alias</b> cukirescatados</div>
+    </div>
+
+    <div style="margin-top:8px"><b>Instagram</b>:
+      <a href="https://instagram.com/mariangelaramirezz" target="_blank" rel="noopener">@mariangelaramirezz</a>
+    </div>
+
+    <div class="qr">
+      <!-- QR con mensaje automático (más chico) -->
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwa.me%2F5491172361533%3Ftext%3DHola%2520%21%2520Quiero%2520participar%2520de%2520la%2520Rifa%2520Manada%2520Cuki.%2520%F0%9F%90%B6"
+        alt="QR WhatsApp">
+      <a class="btn" href="https://wa.me/5491172361533?text=Hola%20!%20Quiero%20participar%20de%20la%20Rifa%20Manada%20Cuki.%20🐶"
+         target="_blank" rel="noopener">Abrir WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- Aviso legal (siempre al final) -->
+<div class="legal">
+  Aviso legal: esta promoción no está patrocinada, avalada ni administrada por Meta, Instagram o WhatsApp,
+  ni asociada a ellos. La participación implica la aceptación total de estas bases.
+</div>
+
+<script>
+  /* ========= CONFIG ========= */
+  const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec";
+  const WHATS      = "5491172361533";
+  const MAX_SELECT = 4;
+  const PRICES     = {1:10000, 2:18000, 3:26000};
+  const CVU        = "0000003100061623575458";
+  const ALIAS      = "cukirescatados";
+  const MAX_N      = 500;
+
+  /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
+  (function () {
+    const v = 'v-green-2';
+    if (!location.search.includes('v=')) {
+      const u = new URL(location.href);
+      u.searchParams.set('v', v);
+      location.replace(u);
+    }
+  })();
+
+  /* ========= DOM ========= */
+  const grid       = document.getElementById('grid');
+  const summary    = document.getElementById('summary');
+  const btnConfirm = document.getElementById('confirm');
+  const btnClear   = document.getElementById('clear');
+  const st         = document.getElementById('st');
+
+  let selected = new Set();
+  let taken    = new Set();
+  const inflight = new Set();
+
+  const clientId = (() => {
+    const k = 'raffleClientId';
+    let v = localStorage.getItem(k);
+    if(!v){ v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random()); localStorage.setItem(k,v); }
+    return v;
+  })();
+
+  const fmt   = n => n.toString().padStart(3,'0');
+  const pesos = n => n.toLocaleString('es-AR');
+
+  function bestPrice(k){
+    const tiers = Object.keys(PRICES).map(Number).sort((a,b)=>a-b);
+    const dp = Array(k+1).fill(Infinity); dp[0]=0;
+    for(let i=1;i<=k;i++){ for(const t of tiers){ if(t<=i) dp[i]=Math.min(dp[i],dp[i-t]+PRICES[t]); } }
+    return dp[k] || 0;
+  }
+
+  /* ===== Render inicial rápido ===== */
+  function renderGridBase(){
+    const frag = document.createDocumentFragment();
+    for(let i=1;i<=MAX_N;i++){
+      const d = document.createElement('div');
+      d.className = 'num';
+      d.textContent = fmt(i);
+      d.addEventListener('click', () => handleToggle(i, d));
+      frag.appendChild(d);
+    }
+    grid.innerHTML = '';
+    grid.appendChild(frag);
+  }
+
+  function applyTaken(){
+    for(let i=1;i<=MAX_N;i++){
+      const el = grid.children[i-1];
+      if(!el) continue;
+      if(taken.has(i)){
+        el.classList.add('sold');
+        el.replaceWith(el.cloneNode(true)); // quita listeners si está vendido
+      }else{
+        el.classList.remove('sold');
+      }
+    }
+  }
+
+  function repaintSelections(){
+    document.querySelectorAll('.num.sel').forEach(el=>el.classList.remove('sel'));
+    for(const n of selected){
+      const el = grid.children[n-1];
+      if(el && !el.classList.contains('sold')) el.classList.add('sel');
+    }
+  }
+
+  function updateSummary(){
+    const arr = [...selected].sort((a,b)=>a-b).map(fmt);
+    const k = arr.length, total = k ? bestPrice(k) : 0;
+    summary.textContent = k
+      ? `Seleccionados: ${arr.join(', ')} • Total a pagar: $${pesos(total)}`
+      : 'Seleccionados: —';
+    btnConfirm.disabled = (k===0);
+  }
+
+  /* ===== API ===== */
+  async function apiGet(params){
+    const q = new URLSearchParams(params).toString();
+    const url = API_BASE + (API_BASE.includes('?') ? '&' : '?') + q;
+    const r = await fetch(url, {cache:'no-store'});
+    if(!r.ok) throw new Error('GET '+r.status);
+    return r.json();
+  }
+  async function apiPost(params){
+    const r = await fetch(API_BASE, {
+      method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(params)
+    });
+    if(!r.ok) throw new Error('POST '+r.status);
+    return r.json();
+  }
+
+  /* ===== Interacción ===== */
+  function handleToggle(n, el){
+    if (inflight.has(n) || el.classList.contains('sold')) return;
+
+    if (selected.has(n)){
+      selected.delete(n);
+      el.classList.remove('sel');
+      updateSummary();
+      inflight.add(n);
+      apiPost({action:'release', clientId, ns:String(n)}).finally(()=>inflight.delete(n));
+      return;
+    }
+
+    if (selected.size >= MAX_SELECT){
+      pulse(summary);
+      return;
+    }
+
+    selected.add(n);
+    el.classList.add('sel');
+    updateSummary();
+
+    inflight.add(n);
+    apiPost({action:'hold', clientId, ns:String(n)})
+      .then(res=>{
+        if (!(res.ok && res.ok.includes(n))){
+          selected.delete(n);
+          el.classList.remove('sel');
+          taken.add(n);
+          el.classList.add('sold');
+          updateSummary();
+          st.textContent = "Ese número se reservó recién. Elegí otro.";
+        }
+      })
+      .catch(()=>{/* si falla red, el hold expira por TTL */})
+      .finally(()=>inflight.delete(n));
+  }
+
+  function pulse(el){
+    el.animate([{transform:'scale(1)'},{transform:'scale(1.02)'},{transform:'scale(1)'}],{duration:300});
+  }
+
+  function waLink(){
+    const arr = [...selected].sort((a,b)=>a-b).map(fmt);
+    const total = bestPrice(arr.length);
+    const msg = `Hola! Quiero confirmar la Rifa Manada Cuki con estos números: ${arr.join(', ')}. Total: $${pesos(total)}. CVU ${CVU} / Alias ${ALIAS}.`;
+    return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
+  }
+
+  btnConfirm.addEventListener('click', async ()=>{
+    if(selected.size===0) return;
+    const ns   = [...selected].join(',');
+    const link = waLink();
+
+    btnConfirm.disabled = true;
+    st.textContent = 'Confirmando…';
+
+    const fallback = setTimeout(()=>{ window.location.href = link; }, 1200);
+    try{
+      const res = await apiPost({action:'finalize', clientId, ns});
+      clearTimeout(fallback);
+
+      if(res.lost && res.lost.length){
+        for(const n of res.lost){ taken.add(Number(n)); selected.delete(Number(n)); }
+        applyTaken(); repaintSelections(); updateSummary();
+        st.textContent = 'Algunos números se agotaron. Elegí otros.';
+        btnConfirm.disabled = false;
+        return;
+      }
+      window.location.href = link;
+    }catch(e){
+      window.location.href = link;
+    }
+  });
+
+  btnClear.addEventListener('click', async ()=>{
+    const ns = [...selected].join(',');
+    selected.clear(); repaintSelections(); updateSummary();
+    if(ns){ try{ await apiPost({action:'release', clientId, ns}); }catch(_){ } }
+  });
+
+  /* ===== Estado ===== */
+  async function refreshState(){
+    try{
+      const res = await apiGet({action:'state'});
+      taken = new Set([...(res.sold||[]), ...(res.reserved||[])]);
+      applyTaken(); repaintSelections(); updateSummary();
+      st.textContent = 'Estado: conectado ✓';
+    }catch(e){
+      st.textContent = 'Estado: sin conexión';
+    }
+  }
+
+  /* ===== Init ===== */
+  renderGridBase();
+  refreshState();
+  setInterval(refreshState, 15000);
+</script>
+</body>
+</html>
 
 /* Notas y legal */
 .note,.legal{font-family:Tahoma, Geneva, sans-serif;font-size:11px;color:#575D58}
