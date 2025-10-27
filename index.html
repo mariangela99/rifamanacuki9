@@ -177,7 +177,7 @@
         <b>1.º Premio:</b>
         2 entradas para el show de
         <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>
-        – <b>Campo Centenario</b>, con <i>Experiencia Early Entrance</i>,+ <i>kit de merch</i>+
+        – <b>Campo Centenario</b> con <i>Experiencia Early Entrance</i>+ <i>kit de merch</i> +
         <i>credencial conmemorativa</i>. Fecha <b>12/12/25</b>.
       </li>
       <li><b>2.º Premio:</b> Perfumes (combo): Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
@@ -219,11 +219,20 @@
     <h3>📝 Bases & Condiciones </h3>
     <ul class="prizes">
       <li><b>Cantidad:</b> del <b>001</b> al <b>500</b>. Máximo <b>4</b> números por persona.</li>
+       <li><b>Fecha de sorteo:</b> <b>13/12/2025</b>.</li>
+      <li><b>Modalidad de sorteo:</b> <b>Quiniela Nocturna de la Ciudad (CABA)</b> del día del sorteo.
+      Se toman las <b>últimas 3 cifras</b> del 1.º, 2.º, 3.º, 4.º, 5.º y 6.º premio para asignar los <b>seis ganadores</b>.</li>
+<li><b>Regla técnica de asignación (rango 001–500):</b>
+      <ol>
+        <li>De cada posición se toman las últimas 3 cifras (000–999).</li>
+        <li>Se mapea a 001–500 con: <code>n = (xxx % 500) + 1</code> (ej.: 824 → 325 / 000 → 500 / 999 → 500). Para qye todos tengan las mismas chances, se usa la conversion automática.</li>
+        <li><b>Sin repetidos:</b> si un número ya resultó ganador, se usa la siguiente posición del extracto (7.º, 8.º, …) hasta completar 6 ganadores ÚNICOS.</li>
+        <li><b>Número no vendido:</b> si sale un número no vendido, el premio corre hacia abajo (ej.: 353 → 352 → 351 → …) hasta encontrar un número vendido.</li>
+      </ol>
+    </li>
       <li><b>Cómo participar:</b> elegís un número(s) disponible(s) en la pagina y escribís por WhatsApp para confirmar.
       El/los número(s) quedan en estado “Reservado” hasta acreditar el PAGO.</li>
     <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
-    <li><b>Sorteo público:</b> (punto a solucionar)</li>
-      <ol>
     <li><b>Premios:</b> No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
     <li><b>Publicación y entrega:</b> se publican ganadores/as en Instagram y WhatsApp dentro de las <b>24 h</b>. Para validar, se solicita comprobante de pago y datos del/los número(s).
       <b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, Unicenter Shoppin, El Solar Shopping, Alto Palermo Shopping</i> o envío a cargo del/la ganador/a (a coordinar).
@@ -280,7 +289,7 @@
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-mar-5';
+    const v = 'v-mar-6';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
