@@ -163,7 +163,7 @@
       <h1>🎟️ Rifa Solidaria – Manada Cuki (Varios Premios)</h1>
       <div class="sub">Elegí hasta 4 números y escribime por WhatsApp 💬</div>
       <div class="pills" style="margin-top:6px">
-        <span>$10.000 c/u</span><span>2 × $18.000</span><span>3 × $26.000</span>
+        <span>$15.000 c/u</span><span>2 × $27.000</span><span>3 × $40.000</span>
       </div>
       <div id="st" class="status">Estado: conectando…</div>
     </div>
@@ -177,8 +177,8 @@
         <b>1.º Premio:</b>
         2 entradas para el show de
         <a href="https://www.instagram.com/mariabecerra/" target="_blank" rel="noopener">@mariabecerra</a>
-        – <b>campo delantero</b>, con <i>acceso temprano</i>, <i>kit de merch</i> y
-        <i>credencial conmemorativa</i>. <b>12/12/25</b>.
+        – <b>Campo Centenario</b>, con <i>acceso temprano</i>, <i>kit de merch</i> y
+        <i>credencial conmemorativa</i>. Fecha <b>12/12/25</b>.
       </li>
       <li><b>2.º Premio:</b> Perfumes (combo): Latafa Yara Candy · Latafa Asad · Calvin Klein Be.</li>
       <li><b>3.º Premio:</b> Make up / Skin care (Kit A): Nivea toallita, hisopos Meraki, pad Conni, ACF camuflaje,
@@ -217,13 +217,20 @@
   <!-- ===== Bases (resumen) ===== -->
   <div class="card" style="margin-top:12px;">
     <h3>📝 Bases & Condiciones </h3>
-    <ul style="margin:0 0 0 16px; padding:0 0 0 4px">
+    <ul class="prizes">
       <li><b>Cantidad:</b> del <b>001</b> al <b>500</b>. Máximo <b>4</b> números por persona.</li>
-      <li><b>Cómo participar:</b> elegís número(s) disponible(s) en la web y confirmás por WhatsApp. Los números quedan “Reservado” hasta acreditar el pago.</li>
-      <li><b>Reserva automática:</b> <b>15 minutos</b>. Vencido el plazo sin pago, vuelven a estar disponibles.</li>
-      <li><b>Sorteo público:</b> según Quiniela Nocturna CABA de la fecha que se comunique.</li>
-      <li><b>Premios:</b> no son canjeables por dinero. Ante falta de stock, podrá reemplazarse por otro de igual o mayor valor.</li>
-      <li><b>Publicación/entrega:</b> ganadores/as en IG y WhatsApp dentro de 24 h. Entrega en Palmas del Pilar, TOM, El Solar o envío a cargo del/la ganador/a.</li>
+      <li><b>Cómo participar:</b> elegís un número(s) disponible(s) en la pagina y escribís por WhatsApp para confirmar.
+      El/los número(s) quedan en estado “Reservado” hasta acreditar el PAGO.</li>
+    <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
+    <li><b>Sorteo público:</b> (punto a solucionar)</li>
+      <ol>
+    <li><b>Premios:</b> No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
+    <li><b>Publicación y entrega:</b> se publican ganadores/as en Instagram y WhatsApp dentro de las <b>24 h</b>. Para validar, se solicita comprobante de pago y datos del/los número(s).
+      <b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, Unicenter Shoppin, El Solar Shopping, Alto Palermo Shopping</i> o envío a cargo del/la ganador/a (a coordinar).
+    </li>
+    <li><b>Plazo para reclamar:</b> <b>7 días corridos</b> desde la publicación. Pasado ese plazo, el premio se considera <b>desierto</b>.</li>
+    <li><b>Devoluciones:</b> no aplican una vez acreditado el pago.</li>
+    <li><b>Transparencia:</b> se conservarán capturas del extracto de ... ? y del procedimiento de asignación. La participación implica la <b>aceptación total</b> de estas bases.</li>
     </ul>
   </div>
 
@@ -266,14 +273,14 @@
   const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec";
   const WHATS      = "5491172361533";
   const MAX_SELECT = 4;
-  const PRICES     = {1:15000, 2:26000, 3:39000};
+  const PRICES     = {1:15000, 2:27000, 3:40000};
   const CVU        = "0000003100061623575458";
   const ALIAS      = "cukirescatados";
   const MAX_N      = 500;
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-green-3';
+    const v = 'v-green-4';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
