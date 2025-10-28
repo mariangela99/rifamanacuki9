@@ -218,22 +218,20 @@
   <div class="card" style="margin-top:12px;">
     <h3>📝 Bases & Condiciones </h3>
     <ul class="prizes">
-      <li><b>Cantidad:</b> del <b>001</b> al <b>500</b>. Máximo <b>4</b> números por persona.</li>
        <li><b>Fecha de sorteo:</b> <b>01/12/2025</b>.</li>
       <li><b>Modalidad de sorteo:</b> <b>Quiniela Nocturna de la Ciudad (CABA)</b> del día del sorteo.
       Se toman las <b>últimas 3 cifras</b> del 1.º al 6.º premio para definir los <b>seis ganadores</b>.</li>
-<li><b>Regla técnica de asignación (números del 001 al 500):Para que todos tengan las mismas chances, se usa la conversion automática.</b></li>
+<li><b>Regla técnica de asignación (del 001 al 500):</b></li>
       <ol>
         <li>Si el número sorteado termina entre 001 y 500, se toma ese número directamente.</li>
     <li>Si el número sorteado termina entre 501 y 999, se le restan 500 para llevarlo al rango válido.
       <br><i>Ejemplo:</i> si sale <b>824</b>, se transforma en <b>324</b>; si sale <b>999</b>, se transforma en <b>499</b>.</li>
     <li>Si algún número ya resultó ganador, se usa el siguiente premio del extracto (7.º, 8.º etc.) hasta completar seis ganadores distintos.</li>
-         
         <li><b>Sin repetidos:</b> si un número ya resultó ganador, se usa la siguiente posición del extracto (7.º, 8.º, …) hasta completar 6 ganadores ÚNICOS.</li>
-        <li><b>Número no vendido:</b> si sale un número no vendido, el premio corre hacia abajo (ej.: 353 → 352 → 351 → …) hasta encontrar un número vendido.</li>
+      <li>Para que todos tengan las mismas chances, se usa la conversion automática.</li>
       </ol>
     </li>
-      <li><b>Cómo participar:</b> elegís un número(s) disponible(s) en la pagina y escribís por WhatsApp para confirmar.
+      <li><b>Cómo participar:</b> elegís un númerodisponible en la pagina y escribís por WhatsApp para confirmar.
       El/los número(s) quedan en estado “Reservado” hasta acreditar el PAGO.</li>
     <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
     <li><b>Premios:</b> No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
@@ -243,7 +241,7 @@ garantizando total transparencia.
 Se conservarán capturas del extracto oficial publicado en la web de Lotería de la Ciudad, junto con el procedimiento de asignación de los números ganadores según las tres últimas cifras de los premios sorteados.  
 El cierre del sorteo y la publicación de ganadores se realizará el mismo día del resultado oficial o dentro de las 24 horas posteriores.</li>
       <li><b>Publicación y entrega:</b> se publican ganadores/as en Instagram y WhatsApp dentro de las <b>24 h</b>. Para validar, se solicita comprobante de pago y datos del/los número(s).</li>
-     <li><b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, Unicenter Shoppin, El Solar Shopping, Alto Palermo Shopping</i> o envío a cargo del/la ganador/a (a coordinar).</li>
+     <li><b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, Unicenter Shopping, El Solar Shopping, Alto Palermo Shopping</i> o envío a cargo del/la ganador/a (a coordinar).</li>
     <li><b>Plazo para reclamar:</b> <b>7 días corridos</b> desde la publicación. Pasado ese plazo, el premio se considera <b>desierto</b>.</li>
     <li><b>Devoluciones:</b> no aplican una vez acreditado el pago.</li>
       <li><b>La participación implica la <b>aceptación total</b> de estas bases y condiciones.</li>
@@ -296,7 +294,7 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-mar-8';
+    const v = 'v-mar-9';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
@@ -438,7 +436,9 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
   function waLink(){
     const arr = [...selected].sort((a,b)=>a-b).map(fmt);
     const total = bestPrice(arr.length);
-    const msg = `Hola! Quiero confirmar la Rifa Manada Cuki con estos números: ${arr.join(', ')}. Total: $${pesos(total)}. CVU ${CVU} / Alias ${ALIAS}.`;
+    const msg = `Hola Mar! Quiero confirmar la Rifa Manada Cuki con estos números: ${arr.join(', ')}. Total: $${pesos(total)}. 
+    CVU ${CVU}
+    Alias ${ALIAS}.`;
     return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
   }
 
