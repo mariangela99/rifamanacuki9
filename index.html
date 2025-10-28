@@ -236,7 +236,7 @@
     <li><b>Reservas:</b> la reserva automática dura <b>15 minutos</b>. Vencido ese plazo sin PAGO, los números vuelven a estar disponibles.</li>
     <li><b>Premios:</b> No son canjeables por dinero. Si algún premio estuviera discontinuado/agotado, podrá reemplazarse por otro de <b>igual o mayor valor</b>.</li>
     <li><b>Transparencia:</b> El sorteo se realizará en base a los resultados oficiales de la 
-<a href="https://www.loteriaciudad.gob.ar/" target="_blank" rel="noopener"><b>Quiniela Nocturna de la Ciudad de Buenos Aires</b></a>,
+<a href="https://quiniela.loteriadelaciudad.gob.ar/" target="_blank" rel="noopener"><b>Quiniela Nocturna de la Ciudad de Buenos Aires</b></a>,
 garantizando total transparencia.
 Se conservarán capturas del extracto oficial publicado en la web de Lotería de la Ciudad, junto con el procedimiento de asignación de los números ganadores según las tres últimas cifras de los premios sorteados.  
 El cierre del sorteo y la publicación de ganadores se realizará el mismo día del resultado oficial o dentro de las 24 horas posteriores.</li>
@@ -294,7 +294,7 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-mar-9';
+    const v = 'v-mar-10';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
@@ -322,6 +322,39 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
 
   const fmt   = n => n.toString().padStart(3,'0');
   const pesos = n => n.toLocaleString('es-AR');
+
+  // === WhatsApp: link con mensaje + QR ===
+// Configurá tu número (formato E.164 sin + ni 0 ni espacios)
+const WA_PHONE = '5491172361533'; // <-- cambiá esto
+
+function buildWaMessage() {
+  // números seleccionados (Set -> array ordenado con 3 dígitos)
+  const nums = [...selected].sort((a,b)=>a-b).map(fmt).join(', ');
+  const msg = `Hola Mar! quiero participar de la rifa.`
+    + (nums ? ` Elegí estos números: ${nums}.` : ``)
+    + `\nComprobé bases y resultados en: https://www.loteria.gba.gov.ar/`
+    + `\nEnvío comprobante a continuación.`;
+  return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
+}
+
+function updateWhatsAppTargets(){
+  const waUrl = buildWaMessage();
+
+  // Botón "Abrir WhatsApp"
+  const btn = document.getElementById('btn-wa');   // <a id="btn-wa">
+  if (btn) btn.href = waUrl;
+
+  // QR con el mismo enlace
+  const qr = document.getElementById('qr-wa');     // <img id="qr-wa">
+  if (qr) {
+    const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=${encodeURIComponent(waUrl)}`;
+    if (qr.src !== qrApi) qr.src = qrApi;
+  }
+}
+
+// Llamado inicial
+updateWhatsAppTargets();
+
 
   function bestPrice(k){
     const tiers = Object.keys(PRICES).map(Number).sort((a,b)=>a-b);
