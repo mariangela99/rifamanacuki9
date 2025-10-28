@@ -192,7 +192,7 @@
           Primont protector térmico, Pantene sellador de puntas, Dove Serum capilar.</li>
       <li><b>6.º Premio:</b> Combo Victoria’s Secret — <span style="opacity:.85">Body Splash y Crema</span></li>
     </ul>
-    <div class="sub" style="margin-top:3px">*Modalidad y medios de pago están al final.</div>
+    <div class="sub" style="margin-top:2px">*Modalidad y medios de pago están al final.</div>
   </div>
 
   <!-- ===== Selección ===== -->
@@ -219,13 +219,16 @@
     <h3>📝 Bases & Condiciones </h3>
     <ul class="prizes">
       <li><b>Cantidad:</b> del <b>001</b> al <b>500</b>. Máximo <b>4</b> números por persona.</li>
-       <li><b>Fecha de sorteo:</b> <b>13/12/2025</b>.</li>
+       <li><b>Fecha de sorteo:</b> <b>01/12/2025</b>.</li>
       <li><b>Modalidad de sorteo:</b> <b>Quiniela Nocturna de la Ciudad (CABA)</b> del día del sorteo.
-      Se toman las <b>últimas 3 cifras</b> del 1.º, 2.º, 3.º, 4.º, 5.º y 6.º premio para asignar los <b>seis ganadores</b>.</li>
-<li><b>Regla técnica de asignación (rango 001–500):</b>
+      Se toman las <b>últimas 3 cifras</b> del 1.º al 6.º premio para definir los <b>seis ganadores</b>.</li>
+<li><b>Regla técnica de asignación (números del 001 al 500):Para que todos tengan las mismas chances, se usa la conversion automática.</b></li>
       <ol>
-        <li>De cada posición se toman las últimas 3 cifras (000–999).</li>
-        <li>Se mapea a 001–500 con: <code>n = (xxx % 500) + 1</code> (ej.: 824 → 325 / 000 → 500 / 999 → 500). Para que todos tengan las mismas chances, se usa la conversion automática.</li>
+        <li>Si el número sorteado termina entre 001 y 500, se toma ese número directamente.</li>
+    <li>Si el número sorteado termina entre 501 y 999, se le restan 500 para llevarlo al rango válido.
+      <br><i>Ejemplo:</i> si sale <b>824</b>, se transforma en <b>324</b>; si sale <b>999</b>, se transforma en <b>499</b>.</li>
+    <li>Si algún número ya resultó ganador, se usa el siguiente premio del extracto (7.º, 8.º etc.) hasta completar seis ganadores distintos.</li>
+         
         <li><b>Sin repetidos:</b> si un número ya resultó ganador, se usa la siguiente posición del extracto (7.º, 8.º, …) hasta completar 6 ganadores ÚNICOS.</li>
         <li><b>Número no vendido:</b> si sale un número no vendido, el premio corre hacia abajo (ej.: 353 → 352 → 351 → …) hasta encontrar un número vendido.</li>
       </ol>
@@ -238,12 +241,12 @@
 <a href="https://www.loteriaciudad.gob.ar/" target="_blank" rel="noopener"><b>Quiniela Nocturna de la Ciudad de Buenos Aires</b></a>,
 garantizando total transparencia.
 Se conservarán capturas del extracto oficial publicado en la web de Lotería de la Ciudad, junto con el procedimiento de asignación de los números ganadores según las tres últimas cifras de los premios sorteados.  
-El cierre del sorteo y la publicación de ganadores se realizará el mismo día del resultado oficial o dentro de las 24 horas posteriores.  
-La participación implica la <b>aceptación total</b> de estas bases y condiciones.</li>
+El cierre del sorteo y la publicación de ganadores se realizará el mismo día del resultado oficial o dentro de las 24 horas posteriores.</li>
       <li><b>Publicación y entrega:</b> se publican ganadores/as en Instagram y WhatsApp dentro de las <b>24 h</b>. Para validar, se solicita comprobante de pago y datos del/los número(s).</li>
      <li><b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, Unicenter Shoppin, El Solar Shopping, Alto Palermo Shopping</i> o envío a cargo del/la ganador/a (a coordinar).</li>
     <li><b>Plazo para reclamar:</b> <b>7 días corridos</b> desde la publicación. Pasado ese plazo, el premio se considera <b>desierto</b>.</li>
     <li><b>Devoluciones:</b> no aplican una vez acreditado el pago.</li>
+      <li><b>La participación implica la <b>aceptación total</b> de estas bases y condiciones.</li>
     </ul>
   </div>
 
@@ -293,7 +296,7 @@ La participación implica la <b>aceptación total</b> de estas bases y condicion
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-mar-7';
+    const v = 'v-mar-8';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
