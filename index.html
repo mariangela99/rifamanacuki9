@@ -1,4 +1,4 @@
-<!doctype html>
+p´ñ'<!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
@@ -223,10 +223,8 @@
       Se toman las <b>últimas 3 cifras</b> del 1.º al 6.º premio para definir los <b>seis ganadores</b>.</li>
 <li><b>Regla técnica de asignación (del 001 al 500):</b></li>
       <ol>
-        <li>Si el número sorteado termina entre 001 y 500, se toma ese número directamente.</li>
     <li>Si el número sorteado termina entre 501 y 999, se le restan 500 para llevarlo al rango válido.
       <br><i>Ejemplo:</i> si sale <b>824</b>, se transforma en <b>324</b>; si sale <b>999</b>, se transforma en <b>499</b>.</li>
-    <li>Si algún número ya resultó ganador, se usa el siguiente premio del extracto (7.º, 8.º etc.) hasta completar seis ganadores distintos.</li>
         <li><b>Sin repetidos:</b> si un número ya resultó ganador, se usa la siguiente posición del extracto (7.º, 8.º, …) hasta completar 6 ganadores ÚNICOS.</li>
       <li>Para que todos tengan las mismas chances, se usa la conversion automática.</li>
       </ol>
@@ -244,7 +242,6 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
      <li><b>Entrega:</b> en mano en <i>Palmas del Pilar, Tortugas Open Mall, Unicenter Shopping, El Solar Shopping, Alto Palermo Shopping</i> o envío a cargo del/la ganador/a (a coordinar).</li>
     <li><b>Plazo para reclamar:</b> <b>7 días corridos</b> desde la publicación. Pasado ese plazo, el premio se considera <b>desierto</b>.</li>
     <li><b>Devoluciones:</b> no aplican una vez acreditado el pago.</li>
-      <li><b>La participación implica la <b>aceptación total</b> de estas bases y condiciones.</li>
     </ul>
   </div>
 
@@ -294,7 +291,7 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-mar-10';
+    const v = 'v-mar-11';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
@@ -469,9 +466,12 @@ updateWhatsAppTargets();
   function waLink(){
     const arr = [...selected].sort((a,b)=>a-b).map(fmt);
     const total = bestPrice(arr.length);
-    const msg = `Hola Mar! Quiero confirmar la Rifa Manada Cuki con estos números: ${arr.join(', ')}. Total: $${pesos(total)}. 
-    CVU ${CVU}
-    Alias ${ALIAS}.`;
+    const msg = `Hola Mar! Quiero confirmar la Rifa Manada Cuki con estos números: ${arr.join(', ')}. Total: $${pesos(total)}.
+    
+  Cuenta de Mercado Pago
+  Titular: Francesca Lisanti
+  CVU: ${CVU}
+  Alias: ${ALIAS}.`;
     return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
   }
 
