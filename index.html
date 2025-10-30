@@ -165,7 +165,7 @@
       <div class="pills" style="margin-top:6px">
         <span>$15.000 c/u</span><span>2 × $27.000</span><span>3 × $40.000</span>
       </div>
-      <div id="st" class="status">Estado: conectando…</div>
+      <div id="st" class="status visually-hidden" aria-live="polite">Estado: conectando…</div>
     </div>
   </div>
 
@@ -222,6 +222,7 @@
        <li><b>Fecha de sorteo:</b> <b>01/12/2025</b>.</li>
       <li><b>Modalidad de sorteo:</b> <b>Quiniela Nocturna de la Ciudad (CABA)</b> del día del sorteo.
       Se toman las <b>últimas 3 cifras</b> del 1.º al 6.º premio para definir los <b>seis ganadores</b>.</li>
+      <li><b>Rango de números:</b> del <b>001</b> al <b>200</b>. 3 números por persona</li>
 <li><b>Regla técnica de asignación (del 001 al 500):</b></li>
       <ol>
     <li>Si el número sorteado termina entre 501 y 999, se le restan 500 para llevarlo al rango válido.
@@ -274,12 +275,14 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
   </div>
 </div>
 
-<!-- Aviso legal (siempre al final) -->
-<div class="legal">
-  Aviso legal: esta promoción no está patrocinada, avalada ni administrada por Meta, Instagram o WhatsApp,
-  ni asociada a ellos. La participación implica la aceptación total de estas bases.
-</div>
-
+<!-- Aviso legal -->
+  <div class="card" style="margin-top:5px;">
+    <div class="legal">
+      Aviso legal: esta promoción no está patrocinada, avalada ni administrada por Meta, Instagram o WhatsApp,
+      ni asociada a ellos. La participación implica la aceptación total de estas bases.
+    </div>
+  </div>
+  
 <script>
   /* ========= CONFIG ========= */
   const API_BASE   = "https://script.google.com/macros/s/AKfycbzovYKCa6Xc2OdEjGxAgmskybWSaCDdAgBfksRYlIMI1fdftp6oV4jRdx0ECMzyAfaT/exec";
@@ -292,7 +295,7 @@ El cierre del sorteo y la publicación de ganadores se realizará el mismo día 
 
   /* ========= Cache-buster (solo agrega ?v= si no existe) ========= */
   (function () {
-    const v = 'v-mar-12';
+    const v = 'v-mar-13';
     if (!location.search.includes('v=')) {
       const u = new URL(location.href);
       u.searchParams.set('v', v);
@@ -330,7 +333,6 @@ function buildWaMessage() {
   const nums = [...selected].sort((a,b)=>a-b).map(fmt).join(', ');
   const msg = `Hola Mar! quiero participar de la rifa.`
     + (nums ? ` Elegí estos números: ${nums}.` : ``)
-    + `\nComprobé bases y resultados en: https://www.loteria.gba.gov.ar/`
     + `\nEnvío comprobante a continuación.`;
   return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
 }
@@ -415,7 +417,7 @@ updateWhatsAppTargets();
   }
   async function apiPost(params){
     const r = await fetch(API_BASE, {
-      method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'},         
       body:new URLSearchParams(params)
     });
     if(!r.ok) throw new Error('POST '+r.status);
@@ -472,7 +474,10 @@ updateWhatsAppTargets();
   Cuenta de Mercado Pago
   Titular: Francesca Lisanti
   CVU: ${CVU}
-  Alias: ${ALIAS}.`;
+  Alias: ${ALIAS}
+
+  Envío comprobante en breve,
+  Muchas Gracias!!`;
     return "https://wa.me/"+WHATS+"?text="+encodeURIComponent(msg);
   }
 
